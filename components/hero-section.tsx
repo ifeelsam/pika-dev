@@ -93,7 +93,7 @@ export function HeroSection() {
           className="text-xl md:text-2xl lg:text-3xl mb-12 max-w-3xl"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
-          The next evolution in digital collectibles with Neo-Brutalist Maximalism design for 2025 and beyond.
+          The next evolution in digital collectibles.
         </p>
 
         <div ref={buttonRef} className="relative group">
