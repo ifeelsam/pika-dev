@@ -58,7 +58,7 @@
 /* Custom font imports */
 @font-face {
   font-family: "Monument Extended";
-  src: url("/fonts/MonumentExtended-Black.woff2") format("woff2");
+  src: url("/fonts/MonumentExtended-Black.woff") format("woff");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
