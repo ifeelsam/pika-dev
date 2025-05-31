@@ -105,7 +105,7 @@ export function WalletConnection() {
         `}
         style={{ fontFamily: "'Monument Extended', sans-serif" }}
       >
-        {connectionState === "disconnected" && "CONNECT WALLET"}
+        {connectionState === "disconnected" && "CONNECT"}
 
         {connectionState === "connecting" && (
           <>
@@ -205,10 +205,9 @@ export function WalletConnection() {
               <button
                 className={`
                   w-full p-2 transition-colors flex items-center justify-center
-                  ${
-                    isDisconnectHovered
-                      ? "bg-[#FF2D55] text-white"
-                      : "bg-transparent border-2 border-[#FF2D55] text-[#FF2D55]"
+                  ${isDisconnectHovered
+                    ? "bg-[#FF2D55] text-white"
+                    : "bg-transparent border-2 border-[#FF2D55] text-[#FF2D55]"
                   }
                 `}
                 onMouseEnter={() => {

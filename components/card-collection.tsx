@@ -27,7 +27,7 @@ export function CardCollection() {
 
     // Create the main horizontal scroll animation
     const horizontalScrollTween = gsap.to(horizontalElement, {
-      x: () => -(horizontalElement.scrollWidth - window.innerWidth + 100),
+      x: () => -(horizontalElement.scrollWidth - window.innerWidth - window.innerWidth * 1.2),
       ease: "none",
       scrollTrigger: {
         trigger: sectionElement,
@@ -147,7 +147,7 @@ export function CardCollection() {
         </div>
       </div>
 
-      <div className="absolute top-0 left-0 w-full py-12 px-6 md:px-12 lg:px-24 z-10">
+      <div className="absolute top-0 left-0 w-full py-20 px-6 md:px-12 lg:px-24 z-10">
         <h2
           className="text-3xl md:text-5xl font-black text-white mb-4"
           style={{ fontFamily: "'Monument Extended', sans-serif" }}
@@ -160,7 +160,7 @@ export function CardCollection() {
         </p>
       </div>
 
-      <div ref={horizontalRef} className="absolute top-0 left-0 h-screen w-[400%] flex items-center pl-[10vw] pt-32">
+      <div ref={horizontalRef} className="absolute top-0 left-0 h-screen w-[400%] flex items-center pl-[10vw] pt-40">
         {collections.map((collection, collectionIndex) => (
           <div key={collection.id} className="relative min-w-[80vw] h-full flex flex-col justify-center px-12">
             <div className="relative h-[500px] mb-12">
@@ -225,15 +225,14 @@ export function CardCollection() {
                                   {card.name}
                                 </h3>
                                 <div
-                                  className={`uppercase text-xs font-bold px-2 py-1 ${
-                                    card.rarity === "legendary"
+                                  className={`uppercase text-xs font-bold px-2 py-1 ${card.rarity === "legendary"
                                       ? "bg-[#F6FF00] text-black"
                                       : card.rarity === "epic"
                                         ? "bg-[#FF2D55] text-white"
                                         : card.rarity === "rare"
                                           ? "bg-[#00F5FF] text-black"
                                           : "bg-white text-black"
-                                  }`}
+                                    }`}
                                 >
                                   {card.rarity}
                                 </div>
@@ -275,7 +274,7 @@ export function CardCollection() {
           </div>
         ))}
 
-        <div className="flex flex-col items-start justify-center h-full space-y-8 pl-12 min-w-[40vw]">
+        <div className="flex flex-col items-start justify-center h-full space-y-8 pl-6 min-w-[40vw]">
           <h3
             className="text-2xl md:text-4xl font-black text-white"
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
