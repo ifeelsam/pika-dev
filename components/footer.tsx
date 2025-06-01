@@ -2,7 +2,7 @@ export function Footer() {
 
 
   const footerSocials = [
-    { name: "Discord", href: "/collection" },
+    { name: "Discord", href: "https://discord.gg/Zsv8mC8NHH" },
     { name: "Twitter", href: "https://x.com/pikavault_" },
   ]
 
