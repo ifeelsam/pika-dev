@@ -172,7 +172,7 @@ export function DisconnectedState() {
             VAULT <span className="text-[#FF2D55]">LOCKED</span>
           </h1>
 
-          <p className="text-xl md:text-2xl mb-6 max-w-4xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <p className="text-xl md:text-2xl mb-6 max-w-7xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             CONNECT WALLET TO ACCESS <span className="text-[#F6FF00] font-bold">YOUR COLLECTION</span>
           </p>
         </div>
@@ -233,13 +233,12 @@ export function DisconnectedState() {
               disabled={isAnimating}
               className={`
                 w-64 h-16 text-xl font-black rounded-none relative overflow-hidden
-                ${
-                  isAnimating
-                    ? "bg-[#FF2D55] text-white"
-                    : "bg-gradient-to-r from-[#F6FF00] to-[#00F5FF] text-[#0A0A0A] hover:from-[#F6FF00]/90 hover:to-[#00F5FF]/90"
+                ${isAnimating
+                  ? "bg-[#FF2D55] text-white"
+                  : "bg-gradient-to-r from-[#F6FF00] to-[#00F5FF] text-[#0A0A0A] hover:from-[#F6FF00]/90 hover:to-[#00F5FF]/90"
                 }
               `}
-              style={{ fontFamily: "'Monument Extended', sans-serif" }}
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
               {isAnimating ? (
                 <>
@@ -255,85 +254,17 @@ export function DisconnectedState() {
             )}
           </motion.div>
 
-          <motion.div whileHover={{ scale: 1.05 }}>
-            <Button
-              onClick={handleViewSample}
-              variant="outline"
-              className="w-64 h-16 text-lg font-bold border-4 border-white/50 text-white bg-transparent hover:bg-white/10 rounded-none"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
-              <Eye className="w-5 h-5 mr-2" />
-              VIEW SAMPLE
-            </Button>
-          </motion.div>
-        </div>
-
-        {/* Sample Content Teasers */}
-        <div className="relative max-w-6xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FF2D55]/20 to-transparent transform -skew-y-1 z-10"></div>
-          <div className="absolute top-4 left-4 z-20">
-            <span
-              className="text-2xl font-black text-[#F6FF00] transform -rotate-12 inline-block"
-              style={{ fontFamily: "'Monument Extended', sans-serif" }}
-            >
-              PREVIEW MODE
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-4">
-            {[...Array(4)].map((_, index) => (
-              <div key={index} className="card-silhouette relative">
-                <div className="aspect-[3/4] bg-white/10 border-2 border-white/20 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#0A0A0A]/80"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span
-                      className="text-xs font-bold text-white/50 transform rotate-12"
-                      style={{ fontFamily: "'Monument Extended', sans-serif" }}
-                    >
-                      CONNECT
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Statistics Counters */}
-        <div className="mt-8 grid grid-cols-3 gap-4">
-          <div className="text-center">
-            <div
-              className="text-4xl font-black text-white/50 mb-2"
-              style={{ fontFamily: "'Monument Extended', sans-serif" }}
-            >
-              <span className="question-mark">???</span>
-            </div>
-            <p className="text-white/70" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-              Total Cards
-            </p>
-          </div>
-          <div className="text-center">
-            <div
-              className="text-4xl font-black text-white/50 mb-2"
-              style={{ fontFamily: "'Monument Extended', sans-serif" }}
-            >
-              <span className="question-mark">???</span>
-            </div>
-            <p className="text-white/70" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-              Portfolio Value
-            </p>
-          </div>
-          <div className="text-center">
-            <div
-              className="text-4xl font-black text-white/50 mb-2"
-              style={{ fontFamily: "'Monument Extended', sans-serif" }}
-            >
-              <span className="question-mark">???</span>
-            </div>
-            <p className="text-white/70" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-              Rare Cards
-            </p>
-          </div>
+          {/* <motion.div whileHover={{ scale: 1.05 }}> */}
+          {/*   <Button */}
+          {/*     onClick={handleViewSample} */}
+          {/*     variant="outline" */}
+          {/*     className="w-64 h-16 text-lg font-bold border-4 border-white/50 text-white bg-transparent hover:bg-white/10 rounded-none" */}
+          {/*     style={{ fontFamily: "'Space Grotesk', sans-serif" }} */}
+          {/*   > */}
+          {/*     <Eye className="w-5 h-5 mr-2" /> */}
+          {/*     VIEW SAMPLE */}
+          {/*   </Button> */}
+          {/* </motion.div> */}
         </div>
       </div>
     </div>

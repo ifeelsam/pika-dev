@@ -5,6 +5,7 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import { redirect } from "next/navigation"
 
 export function CardCollection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -226,12 +227,12 @@ export function CardCollection() {
                                 </h3>
                                 <div
                                   className={`uppercase text-xs font-bold px-2 py-1 ${card.rarity === "legendary"
-                                      ? "bg-[#F6FF00] text-black"
-                                      : card.rarity === "epic"
-                                        ? "bg-[#FF2D55] text-white"
-                                        : card.rarity === "rare"
-                                          ? "bg-[#00F5FF] text-black"
-                                          : "bg-white text-black"
+                                    ? "bg-[#F6FF00] text-black"
+                                    : card.rarity === "epic"
+                                      ? "bg-[#FF2D55] text-white"
+                                      : card.rarity === "rare"
+                                        ? "bg-[#00F5FF] text-black"
+                                        : "bg-white text-black"
                                     }`}
                                 >
                                   {card.rarity}
@@ -287,6 +288,7 @@ export function CardCollection() {
           </h3>
 
           <Button
+            onClick={() => redirect("/marketplace")}
             className="bg-[#FF2D55] hover:bg-[#FF2D55]/90 text-white text-lg font-bold py-6 px-12 rounded-none transition-all duration-300 overflow-hidden"
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
           >

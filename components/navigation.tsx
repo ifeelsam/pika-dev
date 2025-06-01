@@ -27,9 +27,8 @@ export function Navigation() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrollPosition > 50 ? "bg-[#0A0A0A]/90 backdrop-blur-md py-3" : "bg-transparent py-6"
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrollPosition > 50 ? "bg-[#0A0A0A]/90 backdrop-blur-md py-3" : "bg-transparent py-6"
+        }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link
@@ -47,7 +46,7 @@ export function Navigation() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-white hover:text-[#F6FF00] relative group text-sm font-medium tracking-wider"
+              className="text-white hover:text-[#F6FF00] relative group text-lg font-medium tracking-wider"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
               {item.name}
