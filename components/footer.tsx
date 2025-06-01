@@ -1,4 +1,11 @@
 export function Footer() {
+
+
+  const footerSocials = [
+    { name: "Discord", href: "/collection" },
+    { name: "Twitter", href: "https://x.com/pikavault_" },
+  ]
+
   return (
     <footer className="bg-[#0A0A0A] border-t border-white/10 py-12 px-6 md:px-12 lg:px-24">
       <div className="container mx-auto">
@@ -58,14 +65,14 @@ export function Footer() {
               CONNECT
             </h4>
             <ul className="space-y-4">
-              {["Discord", "Twitter"].map((item) => (
-                <li key={item}>
+              {footerSocials.map((item) => (
+                <li key={item.name}>
                   <a
-                    href={`/${item.toLowerCase()}`}
+                    href={item.href}
                     className="text-white/70 hover:text-[#F6FF00] transition-colors"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
-                    {item}
+                    {item.name}
                   </a>
                 </li>
               ))}

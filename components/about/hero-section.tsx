@@ -93,11 +93,11 @@ export function HeroSection() {
       <div className="container mx-auto relative z-10">
         <h1
           ref={headlineRef}
-          className="text-5xl md:text-7xl lg:text-9xl font-black mb-8 leading-none tracking-tight"
+          className="text-2xl md:text-7xl lg:text-8xl lg:space-y-4 font-black mb-8 leading-none tracking-tight"
           style={{ fontFamily: "'Monument Extended', sans-serif" }}
         >
           {/* Split text into characters for animation */}
-          {"HOW PIKAVAULT       WORKS".split("").map((char, index) => (
+          {"HOW PIKAVAULT WORKS".split("").map((char, index) => (
             <span
               key={index}
               className={`char inline-block ${
@@ -109,7 +109,7 @@ export function HeroSection() {
                     : index % 3 === 0
                       ? "transform translate-x-1"
                       : ""
-              }`}
+                }`}
             >
               {char === " " ? "\u00A0" : char}
             </span>
