@@ -187,7 +187,7 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
       <div
         ref={dropZoneRef}
         className={`relative border-4 border-dashed ${
-          isDragging ? "border-[#F6FF00]" : "border-white/30"
+          isDragging ? "border-pikavault-yellow" : "border-white/30"
         } bg-white/5 p-8 h-80 flex flex-col items-center justify-center transition-colors duration-300`}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
@@ -218,7 +218,7 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
                 e.stopPropagation()
                 activateCamera()
               }}
-              className="px-6 py-3 bg-[#00F5FF] text-[#0A0A0A] font-bold flex items-center space-x-2"
+              className="px-6 py-3 bg-pikavault-cyan text-pikavault-dark font-bold flex items-center space-x-2"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
               onMouseEnter={() => onSound("hover")}
             >
@@ -231,11 +231,11 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
             <video ref={videoRef} autoPlay playsInline className="absolute inset-0 w-full h-full object-cover"></video>
 
             {/* Camera overlay */}
-            <div className="absolute inset-0 border-8 border-[#F6FF00] pointer-events-none"></div>
+            <div className="absolute inset-0 border-8 border-pikavault-yellow pointer-events-none"></div>
 
             {/* Capture type indicator */}
             <div
-              className="absolute top-4 left-4 px-4 py-2 bg-[#0A0A0A]/80 border-2 border-[#F6FF00]"
+              className="absolute top-4 left-4 px-4 py-2 bg-pikavault-dark/80 border-2 border-pikavault-yellow"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
             >
               CAPTURE: {captureType.toUpperCase()}
@@ -245,7 +245,7 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
             <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-4">
               <button
                 onClick={captureImage}
-                className="px-6 py-3 bg-[#F6FF00] text-[#0A0A0A] font-bold"
+                className="px-6 py-3 bg-pikavault-yellow text-pikavault-dark font-bold"
                 style={{ fontFamily: "'Monument Extended', sans-serif" }}
                 onMouseEnter={() => onSound("hover")}
                 onClick={() => onSound("click")}
@@ -254,7 +254,7 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
               </button>
               <button
                 onClick={stopCamera}
-                className="px-6 py-3 bg-[#FF2D55] text-white font-bold"
+                className="px-6 py-3 bg-pikavault-pink text-white font-bold"
                 style={{ fontFamily: "'Monument Extended', sans-serif" }}
                 onMouseEnter={() => onSound("hover")}
                 onClick={() => onSound("click")}
@@ -270,7 +270,7 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
           <div className="absolute bottom-0 left-0 right-0">
             <div className="h-4 bg-white/10">
               <div
-                className="h-full bg-[#FF2D55]"
+                className="h-full bg-pikavault-pink"
                 style={{ width: `${uploadProgress}%`, transition: "width 0.2s ease-out" }}
               ></div>
             </div>
@@ -279,8 +279,8 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
 
         {/* Error message */}
         {uploadError && (
-          <div className="absolute bottom-4 left-4 right-4 bg-[#FF2D55]/20 border-l-4 border-[#FF2D55] p-4 flex items-start space-x-2">
-            <AlertTriangle className="w-5 h-5 text-[#FF2D55] flex-shrink-0 mt-0.5" />
+          <div className="absolute bottom-4 left-4 right-4 bg-pikavault-pink/20 border-l-4 border-pikavault-pink p-4 flex items-start space-x-2">
+            <AlertTriangle className="w-5 h-5 text-pikavault-pink flex-shrink-0 mt-0.5" />
             <p style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{uploadError}</p>
           </div>
         )}
@@ -306,21 +306,21 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
                     className="w-full h-full object-cover"
                   />
                   {isProcessing && (
-                    <div className="absolute inset-0 bg-[#0A0A0A]/70 flex items-center justify-center">
-                      <div className="w-8 h-8 border-4 border-[#00F5FF] border-t-transparent rounded-full animate-spin"></div>
+                    <div className="absolute inset-0 bg-pikavault-dark/70 flex items-center justify-center">
+                      <div className="w-8 h-8 border-4 border-pikavault-cyan border-t-transparent rounded-full animate-spin"></div>
                     </div>
                   )}
                 </div>
                 <button
                   onClick={() => removeImage(index)}
-                  className="absolute top-2 right-2 w-8 h-8 bg-[#FF2D55] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute top-2 right-2 w-8 h-8 bg-pikavault-pink text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   onMouseEnter={() => onSound("hover")}
                 >
                   <X className="w-5 h-5" />
                 </button>
                 {isProcessing && index === 0 && (
-                  <div className="absolute bottom-0 left-0 right-0 bg-[#0A0A0A]/80 py-1 px-2">
-                    <p className="text-xs text-[#00F5FF]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  <div className="absolute bottom-0 left-0 right-0 bg-pikavault-dark/80 py-1 px-2">
+                    <p className="text-xs text-pikavault-cyan" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                       Analyzing card...
                     </p>
                   </div>
@@ -330,9 +330,9 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
           </div>
 
           {isProcessing && (
-            <div className="bg-[#0A0A0A] border-l-4 border-[#00F5FF] p-4">
+            <div className="bg-pikavault-dark border-l-4 border-pikavault-cyan p-4">
               <div className="flex items-center space-x-4">
-                <div className="w-6 h-6 border-4 border-[#00F5FF] border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-6 h-6 border-4 border-pikavault-cyan border-t-transparent rounded-full animate-spin"></div>
                 <p style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   AI processing your card images. Detecting card details...
                 </p>
@@ -341,8 +341,8 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
           )}
 
           {!isProcessing && uploadedImages.length >= 2 && (
-            <div className="bg-[#0A0A0A] border-l-4 border-[#00F5FF] p-4 flex items-start space-x-2">
-              <Check className="w-5 h-5 text-[#00F5FF] flex-shrink-0 mt-0.5" />
+            <div className="bg-pikavault-dark border-l-4 border-pikavault-cyan p-4 flex items-start space-x-2">
+              <Check className="w-5 h-5 text-pikavault-cyan flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-bold mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   Card detected successfully!
@@ -363,19 +363,19 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
         </h3>
         <ul className="space-y-2 text-white/70" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
           <li className="flex items-start space-x-2">
-            <span className="text-[#F6FF00] font-bold">•</span>
+            <span className="text-pikavault-yellow font-bold">•</span>
             <span>Use good lighting without glare or shadows</span>
           </li>
           <li className="flex items-start space-x-2">
-            <span className="text-[#F6FF00] font-bold">•</span>
+            <span className="text-pikavault-yellow font-bold">•</span>
             <span>Capture front and back on a dark, solid background</span>
           </li>
           <li className="flex items-start space-x-2">
-            <span className="text-[#F6FF00] font-bold">•</span>
+            <span className="text-pikavault-yellow font-bold">•</span>
             <span>Include close-ups of corners and edges to show condition</span>
           </li>
           <li className="flex items-start space-x-2">
-            <span className="text-[#F6FF00] font-bold">•</span>
+            <span className="text-pikavault-yellow font-bold">•</span>
             <span>For holographic cards, capture at an angle to show the effect</span>
           </li>
         </ul>

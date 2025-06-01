@@ -11,12 +11,12 @@ export function Footer() {
   ]
 
   return (
-    <footer className="bg-[#0A0A0A] border-t border-white/10 py-12 px-6 md:px-12 lg:px-24">
+    <footer className="bg-pikavault-dark border-t border-white/10 py-12 px-6 md:px-12 lg:px-24">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
             <h3
-              className="text-xl font-bold text-[#F6FF00] mb-6"
+              className="text-xl font-bold text-pikavault-yellow mb-6"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
             >
               PIKAVAULT
@@ -35,7 +35,7 @@ export function Footer() {
                 <li key={item}>
                   <Link
                     href={`/${item.toLowerCase()}`}
-                    className="text-white/70 hover:text-[#F6FF00] transition-colors"
+                    className="text-white/70 hover:text-pikavault-yellow transition-colors"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     {item}
@@ -54,7 +54,7 @@ export function Footer() {
                 <li key={item}>
                   <a
                     href={`/${item.toLowerCase()}`}
-                    className="text-white/70 hover:text-[#F6FF00] transition-colors"
+                    className="text-white/70 hover:text-pikavault-yellow transition-colors"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     {item}
@@ -73,7 +73,7 @@ export function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-white/70 hover:text-[#F6FF00] transition-colors"
+                    className="text-white/70 hover:text-pikavault-yellow transition-colors"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     {item.name}
@@ -94,7 +94,7 @@ export function Footer() {
               <a
                 key={item}
                 href={`/${item.toLowerCase()}`}
-                className="text-white/50 hover:text-[#F6FF00] text-sm transition-colors"
+                className="text-white/50 hover:text-pikavault-yellow text-sm transition-colors"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 {item}

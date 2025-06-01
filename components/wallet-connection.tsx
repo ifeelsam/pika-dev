@@ -99,9 +99,9 @@ export function WalletConnection() {
         onMouseEnter={() => playSound("hover")}
         className={`
           relative overflow-hidden font-bold py-2 px-4 md:py-3 md:px-6 transition-all duration-300
-          ${connectionState === "disconnected" ? "bg-[#F6FF00] text-[#0A0A0A]" : ""}
-          ${connectionState === "connecting" ? "bg-[#FF2D55] text-white wallet-connecting scale-105" : ""}
-          ${connectionState === "connected" ? "bg-[#00F5FF] text-[#0A0A0A]" : ""}
+          ${connectionState === "disconnected" ? "bg-pikavault-yellow text-pikavault-dark" : ""}
+          ${connectionState === "connecting" ? "bg-pikavault-pink text-white wallet-connecting scale-105" : ""}
+          ${connectionState === "connected" ? "bg-pikavault-cyan text-pikavault-dark" : ""}
         `}
         style={{ fontFamily: "'Monument Extended', sans-serif" }}
       >
@@ -123,7 +123,7 @@ export function WalletConnection() {
 
         {connectionState === "connected" && (
           <div className="flex items-center space-x-2">
-            <div className="w-2 h-2 bg-[#F6FF00]"></div>
+            <div className="w-2 h-2 bg-pikavault-yellow"></div>
             <span className="font-mono">{truncateAddress(walletData.address)}</span>
             <ChevronDown className="w-4 h-4" />
           </div>
@@ -133,7 +133,7 @@ export function WalletConnection() {
       {/* Dropdown for desktop */}
       {!isMobile && connectionState === "connected" && isDropdownOpen && (
         <div
-          className="absolute right-0 mt-2 w-80 bg-[#0A0A0A]/95 border-4 border-[#00F5FF] z-50"
+          className="absolute right-0 mt-2 w-80 bg-pikavault-dark/95 border-4 border-pikavault-cyan z-50"
           style={{
             clipPath: "polygon(0 0, 100% 0, 95% 95%, 5% 100%)",
             animation: "fadeIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards",
@@ -145,11 +145,11 @@ export function WalletConnection() {
               <p className="text-white/70 text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 WALLET ADDRESS
               </p>
-              <div className="flex items-center justify-between bg-[#0A0A0A] border border-white/20 p-2">
+              <div className="flex items-center justify-between bg-pikavault-dark border border-white/20 p-2">
                 <p className="font-mono text-white text-sm truncate">{walletData.address}</p>
                 <button
                   onClick={copyAddress}
-                  className="p-1 hover:text-[#F6FF00] transition-colors"
+                  className="p-1 hover:text-pikavault-yellow transition-colors"
                   onMouseEnter={() => playSound("hover")}
                 >
                   {isCopied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
@@ -177,7 +177,7 @@ export function WalletConnection() {
               </p>
               <div className="flex justify-between items-baseline">
                 <p
-                  className="text-2xl font-black text-[#F6FF00]"
+                  className="text-2xl font-black text-pikavault-yellow"
                   style={{ fontFamily: "'Monument Extended', sans-serif" }}
                 >
                   {walletData.balance} ETH
@@ -206,8 +206,8 @@ export function WalletConnection() {
                 className={`
                   w-full p-2 transition-colors flex items-center justify-center
                   ${isDisconnectHovered
-                    ? "bg-[#FF2D55] text-white"
-                    : "bg-transparent border-2 border-[#FF2D55] text-[#FF2D55]"
+                    ? "bg-pikavault-pink text-white"
+                    : "bg-transparent border-2 border-pikavault-pink text-pikavault-pink"
                   }
                 `}
                 onMouseEnter={() => {

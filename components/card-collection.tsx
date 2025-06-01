@@ -133,13 +133,13 @@ export function CardCollection() {
   ]
 
   return (
-    <section ref={sectionRef} id="collection" className="relative min-h-screen bg-[#0A0A0A]">
+    <section ref={sectionRef} id="collection" className="relative min-h-screen bg-pikavault-dark">
       {/* Progress bar that fills based on scroll position */}
       <div className="absolute top-0 left-0 w-full h-2 z-20">
         <div className="w-full h-full bg-white/10">
           <div
             ref={topProgressRef}
-            className="h-full bg-[#00F5FF]"
+            className="h-full bg-pikavault-cyan"
             style={{
               width: "0%",
               transition: "width 0.1s ease-out",
@@ -153,7 +153,7 @@ export function CardCollection() {
           className="text-3xl md:text-5xl font-black text-white mb-4"
           style={{ fontFamily: "'Monument Extended', sans-serif" }}
         >
-          FEATURED <span className="text-[#F6FF00]">COLLECTION</span>
+          FEATURED <span className="text-pikavault-yellow">COLLECTION</span>
         </h2>
         <p className="text-white/70 max-w-2xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
           Explore our curated selection of digital collectibles featuring Neo-Brutalist Maximalism design. Scroll
@@ -191,7 +191,7 @@ export function CardCollection() {
                     >
                       <div className="group relative w-[320px] aspect-[3/4] cursor-pointer transition-all duration-500 hover:scale-105">
                         <div
-                          className="absolute inset-0 rounded-none bg-[#0A0A0A] border-4 transition-all duration-300 overflow-hidden transform-gpu"
+                          className="absolute inset-0 rounded-none bg-pikavault-dark border-4 transition-all duration-300 overflow-hidden transform-gpu"
                           style={{
                             borderColor:
                               card.rarity === "legendary"
@@ -214,7 +214,7 @@ export function CardCollection() {
                             />
 
                             {/* Overlay gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0A0A0A]/90"></div>
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-pikavault-dark/90"></div>
 
                             {/* Card content */}
                             <div className="absolute bottom-0 left-0 w-full p-4">
@@ -227,11 +227,11 @@ export function CardCollection() {
                                 </h3>
                                 <div
                                   className={`uppercase text-xs font-bold px-2 py-1 ${card.rarity === "legendary"
-                                    ? "bg-[#F6FF00] text-black"
+                                    ? "bg-pikavault-yellow text-black"
                                     : card.rarity === "epic"
-                                      ? "bg-[#FF2D55] text-white"
+                                      ? "bg-pikavault-pink text-white"
                                       : card.rarity === "rare"
-                                        ? "bg-[#00F5FF] text-black"
+                                        ? "bg-pikavault-cyan text-black"
                                         : "bg-white text-black"
                                     }`}
                                 >
@@ -265,7 +265,7 @@ export function CardCollection() {
                   {collection.name}
                 </h3>
                 <div className="flex items-center">
-                  <div className="w-12 h-[3px] bg-[#FF2D55] mr-4"></div>
+                  <div className="w-12 h-[3px] bg-pikavault-pink mr-4"></div>
                   <p className="text-white/70" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                     {collection.description}
                   </p>
@@ -284,12 +284,12 @@ export function CardCollection() {
             <br />
             MORE
             <br />
-            <span className="text-[#F6FF00]">CARDS</span>
+            <span className="text-pikavault-yellow">CARDS</span>
           </h3>
 
           <Button
             onClick={() => redirect("/marketplace")}
-            className="bg-[#FF2D55] hover:bg-[#FF2D55]/90 text-white text-lg font-bold py-6 px-12 rounded-none transition-all duration-300 overflow-hidden"
+            className="bg-pikavault-pink hover:bg-pikavault-pink/90 text-white text-lg font-bold py-6 px-12 rounded-none transition-all duration-300 overflow-hidden"
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
           >
             VIEW ALL
@@ -302,7 +302,7 @@ export function CardCollection() {
         <div className="w-32 h-[6px] bg-white/10 relative overflow-hidden">
           <div
             ref={bottomProgressRef}
-            className="absolute top-0 left-0 h-full bg-[#00F5FF]"
+            className="absolute top-0 left-0 h-full bg-pikavault-cyan"
             style={{
               width: "0%",
               transition: "width 0.1s ease-out",

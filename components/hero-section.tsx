@@ -73,8 +73,8 @@ export function HeroSection() {
 
   return (
     <section className="relative h-screen flex flex-col justify-center items-start px-6 md:px-12 lg:px-24 overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full bg-[#0A0A0A] z-[-1]">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#FF2D55]/10 via-transparent to-[#00F5FF]/10"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-pikavault-dark z-[-1]">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-pikavault-pink/10 via-transparent to-pikavault-cyan/10"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle,rgba(246,255,0,0.05)_0%,transparent_30%)]"></div>
       </div>
 
@@ -85,7 +85,7 @@ export function HeroSection() {
           style={{ fontFamily: "'Monument Extended', sans-serif" }}
         >
           <span className="text-white">{splitText("PIKA")}</span>
-          <span className="text-[#F6FF00]">{splitText("VAULT", true)}</span>
+          <span className="text-pikavault-yellow">{splitText("VAULT", true)}</span>
         </h1>
 
         <p
@@ -98,18 +98,18 @@ export function HeroSection() {
 
         <div ref={buttonRef} className="relative group">
           <Button
-            className="bg-[#F6FF00] hover:bg-[#F6FF00]/90 text-[#0A0A0A] text-lg md:text-xl font-bold py-6 px-12 rounded-none transition-all duration-300 overflow-hidden group-hover:translate-x-1 group-hover:-translate-y-1"
+            className="bg-pikavault-yellow hover:bg-pikavault-yellow/90 text-pikavault-dark text-lg md:text-xl font-bold py-6 px-12 rounded-none transition-all duration-300 overflow-hidden group-hover:translate-x-1 group-hover:-translate-y-1"
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
           >
             EXPLORE COLLECTION
-            <span className="absolute inset-0 bg-[#FF2D55] mix-blend-overlay opacity-0 group-hover:opacity-30 transition-opacity duration-300"></span>
+            <span className="absolute inset-0 bg-pikavault-pink mix-blend-overlay opacity-0 group-hover:opacity-30 transition-opacity duration-300"></span>
           </Button>
-          <div className="absolute inset-0 border-2 border-[#F6FF00] -z-10 translate-x-2 translate-y-2 group-hover:translate-x-4 group-hover:translate-y-4 transition-all duration-300"></div>
+          <div className="absolute inset-0 border-2 border-pikavault-yellow -z-10 translate-x-2 translate-y-2 group-hover:translate-x-4 group-hover:translate-y-4 transition-all duration-300"></div>
         </div>
       </div>
 
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center">
-        <span className="text-[#F6FF00] animate-bounce mb-2">↓</span>
+        <span className="text-pikavault-yellow animate-bounce mb-2">↓</span>
         <p className="text-sm opacity-60" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
           SCROLL TO EXPLORE
         </p>

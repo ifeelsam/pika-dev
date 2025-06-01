@@ -44,7 +44,7 @@ export default function CollectionPage() {
 
   return (
     <CollectionProvider>
-      <div className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden relative">
+      <div className="min-h-screen bg-pikavault-dark text-white overflow-hidden relative">
         <BackgroundEffects />
         <Navigation />
 

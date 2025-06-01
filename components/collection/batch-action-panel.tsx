@@ -53,10 +53,10 @@ export function BatchActionPanel({ selectedCards, onClearSelection }: BatchActio
   }, [])
 
   return (
-    <div ref={panelRef} className="fixed bottom-0 left-0 right-0 bg-[#0A0A0A] border-t-4 border-[#F6FF00] z-40 p-6">
+    <div ref={panelRef} className="fixed bottom-0 left-0 right-0 bg-pikavault-dark border-t-4 border-pikavault-yellow z-40 p-6">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
         <div className="flex items-center space-x-4">
-          <button onClick={onClearSelection} className="p-2 text-white/70 hover:text-[#F6FF00] transition-colors">
+          <button onClick={onClearSelection} className="p-2 text-white/70 hover:text-pikavault-yellow transition-colors">
             <X className="w-6 h-6" />
           </button>
 
@@ -65,14 +65,14 @@ export function BatchActionPanel({ selectedCards, onClearSelection }: BatchActio
               {selectedCards.length} CARDS SELECTED
             </p>
             <p className="text-xl font-black text-white" style={{ fontFamily: "'Monument Extended', sans-serif" }}>
-              TOTAL: <span className="text-[#F6FF00]">${totalValue}</span>
+              TOTAL: <span className="text-pikavault-yellow">${totalValue}</span>
             </p>
           </div>
         </div>
 
         <div className="flex space-x-4">
           <Button
-            className="bg-[#FF2D55] hover:bg-[#FF2D55]/90 text-white font-bold py-4 px-6 rounded-none flex items-center space-x-2"
+            className="bg-pikavault-pink hover:bg-pikavault-pink/90 text-white font-bold py-4 px-6 rounded-none flex items-center space-x-2"
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
           >
             <Tag className="w-5 h-5" />
@@ -80,7 +80,7 @@ export function BatchActionPanel({ selectedCards, onClearSelection }: BatchActio
           </Button>
 
           <Button
-            className="bg-[#00F5FF] hover:bg-[#00F5FF]/90 text-[#0A0A0A] font-bold py-4 px-6 rounded-none flex items-center space-x-2"
+            className="bg-pikavault-cyan hover:bg-pikavault-cyan/90 text-pikavault-dark font-bold py-4 px-6 rounded-none flex items-center space-x-2"
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
           >
             <ArrowRight className="w-5 h-5" />

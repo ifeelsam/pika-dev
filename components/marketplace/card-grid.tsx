@@ -114,7 +114,7 @@ export function CardGrid({ selectedCards, setSelectedCards }: CardGridProps) {
               {/* Card container */}
               <div
                 className={`
-                  relative bg-[#0A0A0A] border-4 overflow-hidden transform-gpu
+                  relative bg-pikavault-dark border-4 overflow-hidden transform-gpu
                   transition-all duration-300
                   ${
                     isSelected
@@ -136,7 +136,7 @@ export function CardGrid({ selectedCards, setSelectedCards }: CardGridProps) {
                   style={{ backgroundImage: `url(${card.imageUrl})` }}
                 >
                   {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0A0A0A]/90"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-pikavault-dark/90"></div>
 
                   {/* Selection checkbox */}
                   <div
@@ -146,13 +146,13 @@ export function CardGrid({ selectedCards, setSelectedCards }: CardGridProps) {
                       ${
                         isSelected
                           ? `bg-[${rarityColor}] border-[${rarityColor}]`
-                          : "bg-[#0A0A0A]/70 border-white/30 opacity-0 group-hover:opacity-100"
+                          : "bg-pikavault-dark/70 border-white/30 opacity-0 group-hover:opacity-100"
                       }
                       border-2
                     `}
                     style={{ clipPath: rarityShape }}
                   >
-                    {isSelected && <Check className="w-5 h-5 text-[#0A0A0A]" />}
+                    {isSelected && <Check className="w-5 h-5 text-pikavault-dark" />}
                   </div>
 
                   {/* Rarity indicator */}
@@ -183,7 +183,7 @@ export function CardGrid({ selectedCards, setSelectedCards }: CardGridProps) {
 
                 {/* Price tag */}
                 <div
-                  className="absolute -top-2 -right-2 bg-[#0A0A0A] border-4 border-white px-3 py-1 transform rotate-12 z-20"
+                  className="absolute -top-2 -right-2 bg-pikavault-dark border-4 border-white px-3 py-1 transform rotate-12 z-20"
                   style={{
                     borderColor: rarityColor,
                     boxShadow: `5px 5px 0px 0px rgba(10,10,10,1)`,

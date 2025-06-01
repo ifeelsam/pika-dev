@@ -61,7 +61,7 @@ export function WalletMobileSheet({
       <div
         ref={sheetRef}
         className={`
-          fixed bottom-0 left-0 right-0 bg-[#0A0A0A] border-t-4 border-[#00F5FF] z-50
+          fixed bottom-0 left-0 right-0 bg-pikavault-dark border-t-4 border-pikavault-cyan z-50
           transform transition-transform duration-300 ease-out
           ${isOpen ? "translate-y-0" : "translate-y-full"}
         `}
@@ -87,11 +87,11 @@ export function WalletMobileSheet({
             <p className="text-white/70" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               WALLET ADDRESS
             </p>
-            <div className="flex items-center justify-between bg-[#0A0A0A] border border-white/20 p-3">
+            <div className="flex items-center justify-between bg-pikavault-dark border border-white/20 p-3">
               <p className="font-mono text-white truncate">{walletData.address}</p>
               <button
                 onClick={onCopy}
-                className="p-2 hover:text-[#F6FF00] transition-colors"
+                className="p-2 hover:text-pikavault-yellow transition-colors"
                 onMouseEnter={() => playSound("hover")}
               >
                 {isCopied ? <Check className="w-5 h-5 text-green-500" /> : <Copy className="w-5 h-5" />}
@@ -119,7 +119,7 @@ export function WalletMobileSheet({
             </p>
             <div className="flex justify-between items-baseline">
               <p
-                className="text-3xl font-black text-[#F6FF00]"
+                className="text-3xl font-black text-pikavault-yellow"
                 style={{ fontFamily: "'Monument Extended', sans-serif" }}
               >
                 {walletData.balance} ETH
@@ -145,7 +145,7 @@ export function WalletMobileSheet({
             </button>
 
             <button
-              className="w-full p-4 bg-transparent border-2 border-[#FF2D55] text-[#FF2D55] hover:bg-[#FF2D55] hover:text-white transition-colors"
+              className="w-full p-4 bg-transparent border-2 border-pikavault-pink text-pikavault-pink hover:bg-pikavault-pink hover:text-white transition-colors"
               onMouseEnter={() => playSound("hover")}
               onClick={onDisconnect}
             >
@@ -155,7 +155,7 @@ export function WalletMobileSheet({
         </div>
 
         {/* Safe area padding for mobile */}
-        <div className="h-6 bg-[#0A0A0A]"></div>
+        <div className="h-6 bg-pikavault-dark"></div>
       </div>
     </>
   )

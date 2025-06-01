@@ -32,8 +32,8 @@ export function PublishConfirmation({ cardData, uploadedImages }: PublishConfirm
   return (
     <div ref={confirmationRef} className="max-w-3xl mx-auto text-center space-y-12">
       <div className="flex flex-col items-center">
-        <div className="w-24 h-24 bg-[#F6FF00] rounded-full flex items-center justify-center mb-8">
-          <Check className="w-12 h-12 text-[#0A0A0A]" />
+        <div className="w-24 h-24 bg-pikavault-yellow rounded-full flex items-center justify-center mb-8">
+          <Check className="w-12 h-12 text-pikavault-dark" />
         </div>
 
         <h2 className="text-4xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Monument Extended', sans-serif" }}>
@@ -69,7 +69,7 @@ export function PublishConfirmation({ cardData, uploadedImages }: PublishConfirm
             </div>
             <div className="flex justify-between items-center">
               <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Price</span>
-              <span className="text-[#FF2D55] font-bold" style={{ fontFamily: "'Monument Extended', sans-serif" }}>
+              <span className="text-pikavault-pink font-bold" style={{ fontFamily: "'Monument Extended', sans-serif" }}>
                 ${cardData.price || cardData.suggestedPrice}
               </span>
             </div>
@@ -84,7 +84,7 @@ export function PublishConfirmation({ cardData, uploadedImages }: PublishConfirm
           <div className="space-y-2 text-left">
             <div className="flex justify-between items-center">
               <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Status</span>
-              <span className="text-[#00F5FF] font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              <span className="text-pikavault-cyan font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 Confirmed
               </span>
             </div>
@@ -94,7 +94,7 @@ export function PublishConfirmation({ cardData, uploadedImages }: PublishConfirm
                 href={`https://etherscan.io/tx/${txHash}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-1 text-white/70 hover:text-[#F6FF00] transition-colors"
+                className="flex items-center space-x-1 text-white/70 hover:text-pikavault-yellow transition-colors"
               >
                 <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   {`${txHash.slice(0, 6)}...${txHash.slice(-4)}`}
@@ -117,7 +117,7 @@ export function PublishConfirmation({ cardData, uploadedImages }: PublishConfirm
       <div className="space-y-4">
         <Link
           href="/card/001"
-          className="inline-block px-8 py-4 bg-[#F6FF00] text-[#0A0A0A] font-bold text-lg"
+          className="inline-block px-8 py-4 bg-pikavault-yellow text-pikavault-dark font-bold text-lg"
           style={{ fontFamily: "'Monument Extended', sans-serif" }}
         >
           VIEW LISTING
@@ -126,14 +126,14 @@ export function PublishConfirmation({ cardData, uploadedImages }: PublishConfirm
         <div className="flex justify-center space-x-6 mt-4">
           <Link
             href="/marketplace"
-            className="text-white/70 hover:text-[#F6FF00] transition-colors"
+            className="text-white/70 hover:text-pikavault-yellow transition-colors"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             Go to Marketplace
           </Link>
           <Link
             href="/collection"
-            className="text-white/70 hover:text-[#F6FF00] transition-colors"
+            className="text-white/70 hover:text-pikavault-yellow transition-colors"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             View My Collection

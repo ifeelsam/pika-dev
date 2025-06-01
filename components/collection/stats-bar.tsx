@@ -24,7 +24,7 @@ export function StatsBar() {
   }
 
   const totalValue = cards.reduce((sum, card) => sum + card.value, 0)
-
+  console.log("ttoat", totalCards)
   // Stats animation
   useEffect(() => {
     if (statsRef.current) {
@@ -84,16 +84,16 @@ export function StatsBar() {
         >
           <div
             className={`
-            relative bg-[#0A0A0A] border-4 p-6 h-full
+            relative bg-pikavault-dark border-4 p-6 h-full
             transition-all duration-300 transform
-            ${hoveredStat === "total" ? "scale-105 border-[#F6FF00]" : "border-white/30"}
+            ${hoveredStat === "total" ? "scale-105 border-pikavault-yellow" : "border-white/30"}
           `}
           >
             {/* Icon */}
             <div className="absolute top-4 right-4">
               <Zap
                 className={`w-8 h-8 transition-colors duration-300 ${
-                  hoveredStat === "total" ? "text-[#F6FF00]" : "text-white/20"
+                  hoveredStat === "total" ? "text-pikavault-yellow" : "text-white/20"
                 }`}
               />
             </div>
@@ -114,7 +114,7 @@ export function StatsBar() {
               </p>
               <div className="h-1 w-full bg-white/10">
                 <div
-                  className="h-full bg-[#F6FF00] transition-all duration-500"
+                  className="h-full bg-pikavault-yellow transition-all duration-500"
                   style={{ width: hoveredStat === "total" ? "100%" : "60%" }}
                 ></div>
               </div>
@@ -123,7 +123,7 @@ export function StatsBar() {
             {/* Hover effect */}
             <div
               className={`
-              absolute inset-0 border-4 border-[#F6FF00] -z-10
+              absolute inset-0 border-4 border-pikavault-yellow -z-10
               transition-all duration-300
               ${hoveredStat === "total" ? "translate-x-2 translate-y-2" : "translate-x-0 translate-y-0"}
             `}
@@ -139,16 +139,16 @@ export function StatsBar() {
         >
           <div
             className={`
-            relative bg-[#0A0A0A] border-4 p-6 h-full
+            relative bg-pikavault-dark border-4 p-6 h-full
             transition-all duration-300 transform
-            ${hoveredStat === "value" ? "scale-105 border-[#FF2D55]" : "border-white/30"}
+            ${hoveredStat === "value" ? "scale-105 border-pikavault-pink" : "border-white/30"}
           `}
           >
             {/* Icon */}
             <div className="absolute top-4 right-4">
               <Crown
                 className={`w-8 h-8 transition-colors duration-300 ${
-                  hoveredStat === "value" ? "text-[#FF2D55]" : "text-white/20"
+                  hoveredStat === "value" ? "text-pikavault-pink" : "text-white/20"
                 }`}
               />
             </div>
@@ -162,7 +162,7 @@ export function StatsBar() {
                 Portfolio Value
               </p>
               <p
-                className="text-5xl font-black text-[#FF2D55]"
+                className="text-5xl font-black text-pikavault-pink"
                 style={{ fontFamily: "'Monument Extended', sans-serif" }}
               >
                 ${totalValue.toLocaleString()}
@@ -175,7 +175,7 @@ export function StatsBar() {
             {/* Hover effect */}
             <div
               className={`
-              absolute inset-0 border-4 border-[#FF2D55] -z-10
+              absolute inset-0 border-4 border-pikavault-pink -z-10
               transition-all duration-300
               ${hoveredStat === "value" ? "translate-x-2 translate-y-2" : "translate-x-0 translate-y-0"}
             `}
@@ -191,9 +191,9 @@ export function StatsBar() {
         >
           <div
             className={`
-            relative bg-[#0A0A0A] border-4 p-6 h-full
+            relative bg-pikavault-dark border-4 p-6 h-full
             transition-all duration-300 transform
-            ${hoveredStat === "growth" ? "scale-105 border-[#00F5FF]" : "border-white/30"}
+            ${hoveredStat === "growth" ? "scale-105 border-pikavault-cyan" : "border-white/30"}
           `}
           >
             {/* Icon */}
@@ -201,13 +201,13 @@ export function StatsBar() {
               {avgPriceChange >= 0 ? (
                 <TrendingUp
                   className={`w-8 h-8 transition-colors duration-300 ${
-                    hoveredStat === "growth" ? "text-[#00F5FF]" : "text-white/20"
+                    hoveredStat === "growth" ? "text-pikavault-cyan" : "text-white/20"
                   }`}
                 />
               ) : (
                 <TrendingDown
                   className={`w-8 h-8 transition-colors duration-300 ${
-                    hoveredStat === "growth" ? "text-[#FF2D55]" : "text-white/20"
+                    hoveredStat === "growth" ? "text-pikavault-pink" : "text-white/20"
                   }`}
                 />
               )}
@@ -222,7 +222,7 @@ export function StatsBar() {
                 7D Growth
               </p>
               <p
-                className={`text-5xl font-black ${avgPriceChange >= 0 ? "text-[#00F5FF]" : "text-[#FF2D55]"}`}
+                className={`text-5xl font-black ${avgPriceChange >= 0 ? "text-pikavault-cyan" : "text-pikavault-pink"}`}
                 style={{ fontFamily: "'Monument Extended', sans-serif" }}
               >
                 {avgPriceChange >= 0 ? "+" : ""}
@@ -233,7 +233,7 @@ export function StatsBar() {
                   <div
                     key={i}
                     className={`h-4 w-full transition-all duration-300 ${
-                      avgPriceChange >= 0 ? "bg-[#00F5FF]" : "bg-[#FF2D55]"
+                      avgPriceChange >= 0 ? "bg-pikavault-cyan" : "bg-pikavault-pink"
                     }`}
                     style={{
                       opacity: hoveredStat === "growth" ? 1 : 0.3 + i * 0.15,
@@ -248,7 +248,7 @@ export function StatsBar() {
             {/* Hover effect */}
             <div
               className={`
-              absolute inset-0 border-4 border-[#00F5FF] -z-10
+              absolute inset-0 border-4 border-pikavault-cyan -z-10
               transition-all duration-300
               ${hoveredStat === "growth" ? "translate-x-2 translate-y-2" : "translate-x-0 translate-y-0"}
             `}
@@ -264,16 +264,16 @@ export function StatsBar() {
         >
           <div
             className={`
-            relative bg-[#0A0A0A] border-4 p-6 h-full
+            relative bg-pikavault-dark border-4 p-6 h-full
             transition-all duration-300 transform
-            ${hoveredStat === "rarity" ? "scale-105 border-[#F6FF00]" : "border-white/30"}
+            ${hoveredStat === "rarity" ? "scale-105 border-pikavault-yellow" : "border-white/30"}
           `}
           >
             {/* Icon */}
             <div className="absolute top-4 right-4">
               <BarChart3
                 className={`w-8 h-8 transition-colors duration-300 ${
-                  hoveredStat === "rarity" ? "text-[#F6FF00]" : "text-white/20"
+                  hoveredStat === "rarity" ? "text-pikavault-yellow" : "text-white/20"
                 }`}
               />
             </div>
@@ -314,7 +314,7 @@ export function StatsBar() {
             {/* Hover effect */}
             <div
               className={`
-              absolute inset-0 border-4 border-[#F6FF00] -z-10
+              absolute inset-0 border-4 border-pikavault-yellow -z-10
               transition-all duration-300
               ${hoveredStat === "rarity" ? "translate-x-2 translate-y-2" : "translate-x-0 translate-y-0"}
             `}

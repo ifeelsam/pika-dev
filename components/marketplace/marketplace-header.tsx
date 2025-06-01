@@ -47,14 +47,14 @@ export function MarketplaceHeader() {
         className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tight"
         style={{ fontFamily: "'Monument Extended', sans-serif" }}
       >
-        MARKET<span className="text-[#F6FF00]">PLACE</span>
+        MARKET<span className="text-pikavault-yellow">PLACE</span>
       </h1>
 
       <div className="flex justify-end -mt-20 md:-mt-24 lg:-mt-32 mb-12 relative z-10">
         <div ref={searchRef} className="w-full max-w-md relative group">
-          <div className="absolute inset-0 bg-[#F6FF00]/10 transform translate-x-2 translate-y-2 group-focus-within:translate-x-3 group-focus-within:translate-y-3 transition-transform duration-300"></div>
-          <div className="relative flex items-center border-4 border-white/30 group-focus-within:border-[#F6FF00] bg-[#0A0A0A] transition-colors duration-300">
-            <Search className="w-6 h-6 ml-4 text-white/50 group-focus-within:text-[#F6FF00]" />
+          <div className="absolute inset-0 bg-pikavault-yellow/10 transform translate-x-2 translate-y-2 group-focus-within:translate-x-3 group-focus-within:translate-y-3 transition-transform duration-300"></div>
+          <div className="relative flex items-center border-4 border-white/30 group-focus-within:border-pikavault-yellow bg-pikavault-dark transition-colors duration-300">
+            <Search className="w-6 h-6 ml-4 text-white/50 group-focus-within:text-pikavault-yellow" />
             <input
               type="text"
               placeholder="SEARCH CARDS..."
@@ -66,7 +66,7 @@ export function MarketplaceHeader() {
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="p-2 mr-2 text-white/50 hover:text-[#F6FF00] transition-colors"
+                className="p-2 mr-2 text-white/50 hover:text-pikavault-yellow transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>

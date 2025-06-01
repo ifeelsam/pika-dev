@@ -139,7 +139,7 @@ export function DisconnectedState() {
   }
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#0A0A0A] text-white relative overflow-hidden">
+    <div ref={containerRef} className="min-h-screen bg-pikavault-dark text-white relative overflow-hidden">
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -155,11 +155,11 @@ export function DisconnectedState() {
       </div>
 
       {/* Floating Geometric Shapes */}
-      <div className="floating-shape absolute top-20 left-20 w-16 h-16 bg-[#FF2D55]/20 transform rotate-45"></div>
-      <div className="floating-shape absolute top-40 right-32 w-24 h-8 bg-[#F6FF00]/20"></div>
-      <div className="floating-shape absolute bottom-32 left-40 w-12 h-12 bg-[#00F5FF]/20 rounded-full"></div>
+      <div className="floating-shape absolute top-20 left-20 w-16 h-16 bg-pikavault-pink/20 transform rotate-45"></div>
+      <div className="floating-shape absolute top-40 right-32 w-24 h-8 bg-pikavault-yellow/20"></div>
+      <div className="floating-shape absolute bottom-32 left-40 w-12 h-12 bg-pikavault-cyan/20 rounded-full"></div>
       <div className="floating-shape absolute bottom-20 right-20 w-20 h-20 border-4 border-white/20"></div>
-      <div className="floating-shape absolute top-1/3 left-1/4 w-14 h-14 bg-[#FF2D55]/20 transform -rotate-12"></div>
+      <div className="floating-shape absolute top-1/3 left-1/4 w-14 h-14 bg-pikavault-pink/20 transform -rotate-12"></div>
 
       {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-8 md:px-8">
@@ -169,11 +169,11 @@ export function DisconnectedState() {
             className="glitch-title text-6xl md:text-[120px] font-black mb-4 tracking-tight leading-none"
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
           >
-            VAULT <span className="text-[#FF2D55]">LOCKED</span>
+            VAULT <span className="text-pikavault-pink">LOCKED</span>
           </h1>
 
           <p className="text-xl md:text-2xl mb-6 max-w-7xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            CONNECT WALLET TO ACCESS <span className="text-[#F6FF00] font-bold">YOUR COLLECTION</span>
+            CONNECT WALLET TO ACCESS <span className="text-pikavault-yellow font-bold">YOUR COLLECTION</span>
           </p>
         </div>
 
@@ -181,23 +181,23 @@ export function DisconnectedState() {
         <div ref={vaultRef} className="relative mb-8">
           <div className="relative w-48 h-48 md:w-64 md:h-64">
             {/* Main Vault Shape */}
-            <div className="absolute inset-0 bg-[#FF2D55]/30 transform rotate-12 border-8 border-[#FF2D55]"></div>
-            <div className="absolute inset-4 bg-[#0A0A0A] border-4 border-[#F6FF00]"></div>
+            <div className="absolute inset-0 bg-pikavault-pink/30 transform rotate-12 border-8 border-pikavault-pink"></div>
+            <div className="absolute inset-4 bg-pikavault-dark border-4 border-pikavault-yellow"></div>
 
             {/* Lock Icon */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <Lock className="w-16 h-16 text-[#F6FF00]" strokeWidth={3} />
+              <Lock className="w-16 h-16 text-pikavault-yellow" strokeWidth={3} />
             </div>
 
             {/* Scanning Lines */}
             <div className="absolute inset-0 overflow-hidden">
-              <div className="scan-line absolute top-0 w-full h-1 bg-[#00F5FF] opacity-0"></div>
-              <div className="scan-line absolute top-1/3 w-full h-1 bg-[#F6FF00] opacity-0"></div>
-              <div className="scan-line absolute top-2/3 w-full h-1 bg-[#FF2D55] opacity-0"></div>
+              <div className="scan-line absolute top-0 w-full h-1 bg-pikavault-cyan opacity-0"></div>
+              <div className="scan-line absolute top-1/3 w-full h-1 bg-pikavault-yellow opacity-0"></div>
+              <div className="scan-line absolute top-2/3 w-full h-1 bg-pikavault-pink opacity-0"></div>
             </div>
 
             {/* Spotlight Effect */}
-            <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-[#0A0A0A]/50"></div>
+            <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-pikavault-dark/50"></div>
           </div>
         </div>
 
@@ -205,19 +205,19 @@ export function DisconnectedState() {
         <div className="mb-8 max-w-4xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 bg-[#F6FF00] transform rotate-45"></div>
+              <div className="w-8 h-8 bg-pikavault-yellow transform rotate-45"></div>
               <span className="text-xl font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 VIEW YOUR CARDS
               </span>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 bg-[#00F5FF] transform rotate-45"></div>
+              <div className="w-8 h-8 bg-pikavault-cyan transform rotate-45"></div>
               <span className="text-xl font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 TRACK PORTFOLIO
               </span>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 bg-[#FF2D55] transform rotate-45"></div>
+              <div className="w-8 h-8 bg-pikavault-pink transform rotate-45"></div>
               <span className="text-xl font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 LIST FOR SALE
               </span>
@@ -234,8 +234,8 @@ export function DisconnectedState() {
               className={`
                 w-64 h-16 text-xl font-black rounded-none relative overflow-hidden
                 ${isAnimating
-                  ? "bg-[#FF2D55] text-white"
-                  : "bg-gradient-to-r from-[#F6FF00] to-[#00F5FF] text-[#0A0A0A] hover:from-[#F6FF00]/90 hover:to-[#00F5FF]/90"
+                  ? "bg-pikavault-pink text-white"
+                  : "bg-gradient-to-r from-pikavault-yellow to-pikavault-cyan text-pikavault-dark hover:from-pikavault-yellow/90 hover:to-pikavault-cyan/90"
                 }
               `}
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
@@ -243,14 +243,14 @@ export function DisconnectedState() {
               {isAnimating ? (
                 <>
                   <span className="animate-pulse">CONNECTING...</span>
-                  <div className="absolute inset-0 border-4 border-[#F6FF00] animate-pulse"></div>
+                  <div className="absolute inset-0 border-4 border-pikavault-yellow animate-pulse"></div>
                 </>
               ) : (
                 "CONNECT WALLET"
               )}
             </Button>
             {!isAnimating && (
-              <div className="absolute inset-0 border-4 border-[#F6FF00] -z-10 translate-x-2 translate-y-2 animate-pulse"></div>
+              <div className="absolute inset-0 border-4 border-pikavault-yellow -z-10 translate-x-2 translate-y-2 animate-pulse"></div>
             )}
           </motion.div>
 

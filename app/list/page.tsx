@@ -136,7 +136,7 @@ export default function ListingPage() {
     return (
       <>
         <Navigation />
-        <div className="min-h-screen bg-[#0A0A0A] text-white flex items-center justify-center">
+        <div className="min-h-screen bg-pikavault-dark text-white flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-6xl font-black mb-8" style={{ fontFamily: "'Monument Extended', sans-serif" }}>
               WALLET REQUIRED
@@ -159,7 +159,7 @@ export default function ListingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden relative">
+    <div className="min-h-screen bg-pikavault-dark text-white overflow-hidden relative">
       <BackgroundEffects />
       <Navigation />
 
@@ -169,7 +169,7 @@ export default function ListingPage() {
             className="text-5xl md:text-7xl font-black mb-8 tracking-tight"
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
           >
-            TOKENIZE <span className="text-[#F6FF00]">YOUR CARD</span>
+            TOKENIZE <span className="text-pikavault-yellow">YOUR CARD</span>
           </h1>
 
           <p className="text-xl text-white/70 max-w-3xl mb-16" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
@@ -182,7 +182,7 @@ export default function ListingPage() {
               {/* Progress indicator */}
               <div className="w-full h-4 bg-white/10 mb-16 relative">
                 <div
-                  className="h-full bg-[#F6FF00]"
+                  className="h-full bg-pikavault-yellow"
                   style={{
                     width: `${(activeStep + 1) * 25}%`,
                     transition: "width 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67)",
@@ -192,7 +192,7 @@ export default function ListingPage() {
                   <div
                     key={step}
                     className={`absolute top-0 w-4 h-4 transform -translate-x-1/2 transition-all duration-300 ${
-                      step <= activeStep ? "bg-[#F6FF00]" : "bg-white/20"
+                      step <= activeStep ? "bg-pikavault-yellow" : "bg-white/20"
                     }`}
                     style={{ left: `${step * 25 + 25}%` }}
                   ></div>
@@ -229,7 +229,7 @@ export default function ListingPage() {
                   )}
                   {activeStep === 3 && (
                     <div className="space-y-8">
-                      <div className="bg-white/5 border-4 border-[#F6FF00] p-8">
+                      <div className="bg-white/5 border-4 border-pikavault-yellow p-8">
                         <h3
                           className="text-2xl font-black mb-6"
                           style={{ fontFamily: "'Monument Extended', sans-serif" }}
@@ -262,7 +262,7 @@ export default function ListingPage() {
                           <div className="flex justify-between items-center border-b border-white/20 pb-2">
                             <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Price</span>
                             <span
-                              className="font-bold text-[#FF2D55]"
+                              className="font-bold text-pikavault-pink"
                               style={{ fontFamily: "'Monument Extended', sans-serif" }}
                             >
                               ${cardData.price || cardData.suggestedPrice}
@@ -337,8 +337,8 @@ export default function ListingPage() {
                     (activeStep === 2 && !cardData.condition)
                       ? "bg-white/20 text-white/50 cursor-not-allowed"
                       : activeStep === 3
-                        ? "bg-[#F6FF00] text-[#0A0A0A] hover:bg-[#F6FF00]/90"
-                        : "bg-[#00F5FF] text-[#0A0A0A] hover:bg-[#00F5FF]/90"
+                        ? "bg-pikavault-yellow text-pikavault-dark hover:bg-pikavault-yellow/90"
+                        : "bg-pikavault-cyan text-pikavault-dark hover:bg-pikavault-cyan/90"
                   }`}
                   style={{ fontFamily: "'Monument Extended', sans-serif" }}
                   onMouseEnter={() => {

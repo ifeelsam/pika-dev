@@ -46,20 +46,20 @@ export function OwnershipHistory({ history }: OwnershipHistoryProps) {
     <section ref={sectionRef} className="py-16">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-black mb-12" style={{ fontFamily: "'Monument Extended', sans-serif" }}>
-          OWNERSHIP <span className="text-[#F6FF00]">HISTORY</span>
+          OWNERSHIP <span className="text-pikavault-yellow">HISTORY</span>
         </h2>
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-1 bg-[#F6FF00]/30"></div>
+          <div className="absolute left-8 top-0 bottom-0 w-1 bg-pikavault-yellow/30"></div>
 
           <div className="space-y-8">
             {history.map((entry, index) => (
               <div key={index} className="history-item relative flex items-center space-x-8">
                 {/* Timeline dot */}
                 <div className="relative z-10">
-                  <div className="w-16 h-16 bg-[#F6FF00] flex items-center justify-center">
-                    <User className="w-8 h-8 text-[#0A0A0A]" />
+                  <div className="w-16 h-16 bg-pikavault-yellow flex items-center justify-center">
+                    <User className="w-8 h-8 text-pikavault-dark" />
                   </div>
                 </div>
 
@@ -81,7 +81,7 @@ export function OwnershipHistory({ history }: OwnershipHistoryProps) {
 
                     <div className="text-right">
                       <p
-                        className="text-2xl font-black text-[#00F5FF] mb-2"
+                        className="text-2xl font-black text-pikavault-cyan mb-2"
                         style={{ fontFamily: "'Monument Extended', sans-serif" }}
                       >
                         ${entry.price}
@@ -90,7 +90,7 @@ export function OwnershipHistory({ history }: OwnershipHistoryProps) {
                         href={`https://etherscan.io/tx/${entry.txHash}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center space-x-1 text-white/70 hover:text-[#F6FF00] transition-colors"
+                        className="flex items-center space-x-1 text-white/70 hover:text-pikavault-yellow transition-colors"
                       >
                         <span className="text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                           View TX

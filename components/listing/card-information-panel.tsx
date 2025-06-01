@@ -244,14 +244,14 @@ export function CardInformationPanel({ cardData, updateCardData, onSound }: Card
                 value={searchQuery}
                 onChange={handleSearchInputChange}
                 placeholder="Search by card name..."
-                className="w-full bg-[#0A0A0A] border-4 border-white/30 focus:border-[#F6FF00] p-4 text-white outline-none transition-colors duration-300"
+                className="w-full bg-pikavault-dark border-4 border-white/30 focus:border-pikavault-yellow p-4 text-white outline-none transition-colors duration-300"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 onFocus={() => searchQuery.length > 1 && setShowResults(true)}
               />
               {isSearching ? (
                 <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                  <div className="w-5 h-5 border-2 border-[#F6FF00] border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 border-pikavault-yellow border-t-transparent rounded-full animate-spin"></div>
                 </div>
               ) : searchQuery ? (
                 <button
@@ -265,7 +265,7 @@ export function CardInformationPanel({ cardData, updateCardData, onSound }: Card
             </div>
             <button
               onClick={handleSearch}
-              className="bg-[#F6FF00] text-[#0A0A0A] p-4 font-bold"
+              className="bg-pikavault-yellow text-pikavault-dark p-4 font-bold"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
               onMouseEnter={() => onSound("hover")}
             >
@@ -295,7 +295,7 @@ export function CardInformationPanel({ cardData, updateCardData, onSound }: Card
 
           {/* Search results dropdown */}
           {showResults && searchResults.length > 0 && (
-            <div className="absolute z-50 w-full mt-2 bg-[#0A0A0A] border-4 border-[#F6FF00] max-h-[400px] overflow-y-auto shadow-xl">
+            <div className="absolute z-50 w-full mt-2 bg-pikavault-dark border-4 border-pikavault-yellow max-h-[400px] overflow-y-auto shadow-xl">
               <div className="p-2 border-b border-white/20 flex justify-between items-center">
                 <span className="text-white/70 text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   {searchResults.length} results
@@ -313,7 +313,7 @@ export function CardInformationPanel({ cardData, updateCardData, onSound }: Card
                 <button
                   key={card.id}
                   className={`w-full p-3 flex items-center gap-4 transition-colors border-b border-white/10 ${
-                    highlightedCardId === card.id ? "bg-[#F6FF00]/20" : "hover:bg-white/20"
+                    highlightedCardId === card.id ? "bg-pikavault-yellow/20" : "hover:bg-white/20"
                   }`}
                   onClick={() => handleSelectCard(card)}
                   onMouseEnter={() => {
@@ -340,9 +340,9 @@ export function CardInformationPanel({ cardData, updateCardData, onSound }: Card
                     </div>
                   </div>
                   <div className="flex-shrink-0">
-                    {card.rarity === "legendary" && <Star className="w-5 h-5 text-[#F6FF00]" />}
-                    {card.rarity === "epic" && <Star className="w-5 h-5 text-[#FF2D55]" />}
-                    {card.rarity === "rare" && <Star className="w-5 h-5 text-[#00F5FF]" />}
+                    {card.rarity === "legendary" && <Star className="w-5 h-5 text-pikavault-yellow" />}
+                    {card.rarity === "epic" && <Star className="w-5 h-5 text-pikavault-pink" />}
+                    {card.rarity === "rare" && <Star className="w-5 h-5 text-pikavault-cyan" />}
                     {card.rarity === "ultra rare" && <Star className="w-5 h-5 text-[#FF9500]" />}
                     {card.rarity === "common" && <Star className="w-5 h-5 text-white/50" />}
                   </div>
@@ -353,12 +353,12 @@ export function CardInformationPanel({ cardData, updateCardData, onSound }: Card
 
           {/* No results message */}
           {showResults && searchQuery.length > 1 && searchResults.length === 0 && (
-            <div className="absolute z-50 w-full mt-2 bg-[#0A0A0A] border-4 border-white/30 p-4 text-center shadow-xl">
+            <div className="absolute z-50 w-full mt-2 bg-pikavault-dark border-4 border-white/30 p-4 text-center shadow-xl">
               <p className="text-white/70 mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 No cards found matching "{searchQuery}"
               </p>
               <button
-                className="text-[#00F5FF] text-sm hover:underline"
+                className="text-pikavault-cyan text-sm hover:underline"
                 onClick={clearSearch}
                 onMouseEnter={() => onSound("hover")}
               >
@@ -381,13 +381,13 @@ export function CardInformationPanel({ cardData, updateCardData, onSound }: Card
             value={cardData.name}
             onChange={(e) => updateCardData({ name: e.target.value })}
             placeholder="Enter card name..."
-            className={`w-full bg-[#0A0A0A] border-4 ${
-              cardData.name ? "border-[#00F5FF]" : "border-white/30"
+            className={`w-full bg-pikavault-dark border-4 ${
+              cardData.name ? "border-pikavault-cyan" : "border-white/30"
             } p-4 text-white outline-none transition-colors duration-300`}
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           />
           {cardData.name && (
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#00F5FF]">
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 text-pikavault-cyan">
               <Check className="w-5 h-5" />
             </div>
           )}
@@ -411,7 +411,7 @@ export function CardInformationPanel({ cardData, updateCardData, onSound }: Card
                 }}
                 className={`flex flex-col items-center p-4 border-4 min-w-[150px] transition-all duration-300 ${
                   cardData.set === set.name
-                    ? "border-[#F6FF00] bg-[#F6FF00]/10"
+                    ? "border-pikavault-yellow bg-pikavault-yellow/10"
                     : "border-white/30 hover:border-white/60"
                 }`}
                 onMouseEnter={() => onSound("hover")}
@@ -440,7 +440,7 @@ export function CardInformationPanel({ cardData, updateCardData, onSound }: Card
             value={cardData.number}
             onChange={(e) => updateCardData({ number: e.target.value })}
             placeholder="000/000"
-            className="w-full bg-[#0A0A0A] border-4 border-white/30 focus:border-[#F6FF00] p-4 text-white outline-none transition-colors duration-300"
+            className="w-full bg-pikavault-dark border-4 border-white/30 focus:border-pikavault-yellow p-4 text-white outline-none transition-colors duration-300"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           />
         </div>
@@ -490,7 +490,7 @@ export function CardInformationPanel({ cardData, updateCardData, onSound }: Card
               }}
               className={`p-3 border-2 transition-all duration-300 ${
                 cardData.language === language
-                  ? "border-[#00F5FF] bg-[#00F5FF]/10"
+                  ? "border-pikavault-cyan bg-pikavault-cyan/10"
                   : "border-white/30 hover:border-white/60"
               }`}
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
@@ -515,7 +515,7 @@ export function CardInformationPanel({ cardData, updateCardData, onSound }: Card
               onSound("click")
             }}
             className={`w-12 h-6 ${
-              cardData.isGraded ? "bg-[#F6FF00]" : "bg-white/30"
+              cardData.isGraded ? "bg-pikavault-yellow" : "bg-white/30"
             } relative rounded-full transition-colors duration-300`}
             onMouseEnter={() => onSound("hover")}
           >
@@ -536,7 +536,7 @@ export function CardInformationPanel({ cardData, updateCardData, onSound }: Card
               <select
                 value={cardData.gradingCompany}
                 onChange={(e) => updateCardData({ gradingCompany: e.target.value })}
-                className="w-full bg-[#0A0A0A] border-4 border-white/30 focus:border-[#F6FF00] p-4 text-white outline-none transition-colors duration-300"
+                className="w-full bg-pikavault-dark border-4 border-white/30 focus:border-pikavault-yellow p-4 text-white outline-none transition-colors duration-300"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 <option value="">Select company</option>
@@ -554,7 +554,7 @@ export function CardInformationPanel({ cardData, updateCardData, onSound }: Card
                 value={cardData.gradingScore}
                 onChange={(e) => updateCardData({ gradingScore: e.target.value })}
                 placeholder="10, 9.5, etc."
-                className="w-full bg-[#0A0A0A] border-4 border-white/30 focus:border-[#F6FF00] p-4 text-white outline-none transition-colors duration-300"
+                className="w-full bg-pikavault-dark border-4 border-white/30 focus:border-pikavault-yellow p-4 text-white outline-none transition-colors duration-300"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               />
             </div>

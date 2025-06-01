@@ -253,7 +253,7 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden relative">
+    <div className="min-h-screen bg-pikavault-dark text-white overflow-hidden relative">
       <BackgroundEffects />
       <Navigation />
 
@@ -263,7 +263,7 @@ export default function SearchPage() {
             className="text-5xl md:text-7xl font-black mb-8 tracking-tight"
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
           >
-            SEARCH <span className="text-[#00F5FF]">THE VAULT</span>
+            SEARCH <span className="text-pikavault-cyan">THE VAULT</span>
           </h1>
 
           <p className="text-xl text-white/70 max-w-3xl mb-12" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
@@ -284,7 +284,7 @@ export default function SearchPage() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch(searchQuery)}
                 placeholder="Search by card name, set, rarity, or type..."
-                className="w-full bg-white/5 border-4 border-white/20 py-5 pl-16 pr-12 text-xl focus:border-[#00F5FF] focus:outline-none transition-all duration-300"
+                className="w-full bg-white/5 border-4 border-white/20 py-5 pl-16 pr-12 text-xl focus:border-pikavault-cyan focus:outline-none transition-all duration-300"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               />
               {searchQuery && (
@@ -298,7 +298,7 @@ export default function SearchPage() {
               )}
               <button
                 onClick={() => handleSearch(searchQuery)}
-                className="absolute right-6 text-white/70 hover:text-[#00F5FF] transition-colors duration-300"
+                className="absolute right-6 text-white/70 hover:text-pikavault-cyan transition-colors duration-300"
                 onMouseEnter={() => playSound("hover")}
                 onMouseDown={() => playSound("click")}
               >
@@ -343,7 +343,7 @@ export default function SearchPage() {
                 onClick={() => handleFilterClick(filter)}
                 className={`px-4 py-2 transition-all duration-300 ${
                   activeFilter === filter
-                    ? "bg-[#00F5FF] text-[#0A0A0A] font-bold"
+                    ? "bg-pikavault-cyan text-pikavault-dark font-bold"
                     : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
                 }`}
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
@@ -367,7 +367,7 @@ export default function SearchPage() {
           {/* Search results */}
           {isSearching ? (
             <div className="flex flex-col items-center justify-center py-20">
-              <div className="w-16 h-16 border-4 border-t-[#00F5FF] border-r-[#00F5FF]/50 border-b-[#00F5FF]/30 border-l-transparent rounded-full animate-spin mb-6"></div>
+              <div className="w-16 h-16 border-4 border-t-pikavault-cyan border-r-pikavault-cyan/50 border-b-pikavault-cyan/30 border-l-transparent rounded-full animate-spin mb-6"></div>
               <p className="text-xl text-white/70" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 Searching the vault...
               </p>
@@ -413,7 +413,7 @@ export default function SearchPage() {
               </p>
               <button
                 onClick={clearSearch}
-                className="mt-8 px-8 py-4 bg-[#00F5FF] text-[#0A0A0A] hover:bg-[#00F5FF]/90 transition-all duration-300"
+                className="mt-8 px-8 py-4 bg-pikavault-cyan text-pikavault-dark hover:bg-pikavault-cyan/90 transition-all duration-300"
                 style={{ fontFamily: "'Monument Extended', sans-serif" }}
                 onMouseEnter={() => playSound("hover")}
               >

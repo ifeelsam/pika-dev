@@ -76,18 +76,18 @@ export function PriceChart({ data, currentPrice }: PriceChartProps) {
             className="text-3xl md:text-4xl font-black mb-4"
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
           >
-            PRICE <span className="text-[#F6FF00]">HISTORY</span>
+            PRICE <span className="text-pikavault-yellow">HISTORY</span>
           </h2>
 
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
               {isPositive ? (
-                <TrendingUp className="w-6 h-6 text-[#00F5FF]" />
+                <TrendingUp className="w-6 h-6 text-pikavault-cyan" />
               ) : (
-                <TrendingDown className="w-6 h-6 text-[#FF2D55]" />
+                <TrendingDown className="w-6 h-6 text-pikavault-pink" />
               )}
               <span
-                className={`text-2xl font-black ${isPositive ? "text-[#00F5FF]" : "text-[#FF2D55]"}`}
+                className={`text-2xl font-black ${isPositive ? "text-pikavault-cyan" : "text-pikavault-pink"}`}
                 style={{ fontFamily: "'Monument Extended', sans-serif" }}
               >
                 {isPositive ? "+" : ""}
@@ -101,7 +101,7 @@ export function PriceChart({ data, currentPrice }: PriceChartProps) {
           </div>
         </div>
 
-        <div className="relative bg-[#0A0A0A] border-4 border-white/20 p-8">
+        <div className="relative bg-pikavault-dark border-4 border-white/20 p-8">
           <svg width="100%" height="300" viewBox="0 0 800 200" className="overflow-visible">
             {/* Grid lines */}
             <defs>

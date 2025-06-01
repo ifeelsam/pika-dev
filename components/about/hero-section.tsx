@@ -78,10 +78,10 @@ export function HeroSection() {
     >
       {/* Abstract geometric representation */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#F6FF00]/10 transform rotate-45"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 border-4 border-[#F6FF00]/20 transform -rotate-12"></div>
-        <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-[#F6FF00]/5 transform rotate-12"></div>
-        <div className="absolute bottom-1/3 left-1/3 w-48 h-48 border-2 border-[#F6FF00]/15 transform rotate-45"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-pikavault-yellow/10 transform rotate-45"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 border-4 border-pikavault-yellow/20 transform -rotate-12"></div>
+        <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-pikavault-yellow/5 transform rotate-12"></div>
+        <div className="absolute bottom-1/3 left-1/3 w-48 h-48 border-2 border-pikavault-yellow/15 transform rotate-45"></div>
 
         {/* Angular patterns */}
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -124,7 +124,7 @@ export function HeroSection() {
           >
             SECURE - VERIFIED - GUARANTEED
           </p>
-          <div ref={underlineRef} className="absolute bottom-0 left-24 md:left-48 h-1 bg-[#F6FF00] w-0"></div>
+          <div ref={underlineRef} className="absolute bottom-0 left-24 md:left-48 h-1 bg-pikavault-yellow w-0"></div>
         </div>
 
         <motion.div
@@ -141,7 +141,7 @@ export function HeroSection() {
       </div>
 
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center">
-        <span className="text-[#F6FF00] animate-bounce mb-2">↓</span>
+        <span className="text-pikavault-yellow animate-bounce mb-2">↓</span>
         <p className="text-sm opacity-60" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
           SCROLL TO EXPLORE
         </p>

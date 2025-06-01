@@ -141,8 +141,8 @@ export function CustomToast({
         onClick={handleToastClick}
         className={`
           relative w-[400px] h-[120px] cursor-pointer transition-all duration-300
-          ${isSuccess ? "bg-[#00F5FF]" : "bg-[#FF2D55]/90"}
-          border-4 ${isSuccess ? "border-[#F6FF00]" : "border-[#F6FF00]"}
+          ${isSuccess ? "bg-pikavault-cyan" : "bg-pikavault-pink/90"}
+          border-4 ${isSuccess ? "border-pikavault-yellow" : "border-pikavault-yellow"}
           backdrop-blur-sm shadow-2xl
           hover:scale-105 hover:shadow-[0_0_30px_rgba(246,255,0,0.5)]
         `}
@@ -156,7 +156,7 @@ export function CustomToast({
             e.stopPropagation()
             handleClose()
           }}
-          className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center text-white hover:text-[#F6FF00] transition-colors"
+          className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center text-white hover:text-pikavault-yellow transition-colors"
         >
           <X className="w-4 h-4" strokeWidth={3} />
         </button>
@@ -166,13 +166,13 @@ export function CustomToast({
           {/* Warning Icon */}
           <div className="flex-shrink-0">
             {isSuccess ? (
-              <div className="w-8 h-8 bg-[#F6FF00] flex items-center justify-center transform rotate-45">
-                <div className="w-4 h-4 bg-[#00F5FF] transform -rotate-45"></div>
+              <div className="w-8 h-8 bg-pikavault-yellow flex items-center justify-center transform rotate-45">
+                <div className="w-4 h-4 bg-pikavault-cyan transform -rotate-45"></div>
               </div>
             ) : (
               <div className="relative">
-                <div className="w-8 h-8 border-4 border-[#F6FF00] transform rotate-45"></div>
-                <AlertTriangle className="absolute inset-0 w-8 h-8 text-[#F6FF00] transform -rotate-45" />
+                <div className="w-8 h-8 border-4 border-pikavault-yellow transform rotate-45"></div>
+                <AlertTriangle className="absolute inset-0 w-8 h-8 text-pikavault-yellow transform -rotate-45" />
               </div>
             )}
           </div>
@@ -198,7 +198,7 @@ export function CustomToast({
                   e.stopPropagation()
                   handleConnect()
                 }}
-                className="bg-[#F6FF00] text-[#0A0A0A] hover:bg-[#F6FF00]/90 text-sm font-bold px-4 py-2 rounded-none"
+                className="bg-pikavault-yellow text-pikavault-dark hover:bg-pikavault-yellow/90 text-sm font-bold px-4 py-2 rounded-none"
                 style={{ fontFamily: "'Monument Extended', sans-serif" }}
               >
                 CONNECT NOW
@@ -208,14 +208,14 @@ export function CustomToast({
 
           {isConnecting && (
             <div className="flex-shrink-0">
-              <div className="w-8 h-8 border-4 border-[#F6FF00] border-t-transparent animate-spin"></div>
+              <div className="w-8 h-8 border-4 border-pikavault-yellow border-t-transparent animate-spin"></div>
             </div>
           )}
         </div>
 
         {/* Animated Border Pulse */}
         {!isSuccess && (
-          <div className="absolute inset-0 border-4 border-[#F6FF00] animate-pulse opacity-50 pointer-events-none"></div>
+          <div className="absolute inset-0 border-4 border-pikavault-yellow animate-pulse opacity-50 pointer-events-none"></div>
         )}
       </div>
     </div>

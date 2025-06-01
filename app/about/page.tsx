@@ -68,7 +68,7 @@ export default function AboutPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden relative" data-page="about">
+    <div className="min-h-screen bg-pikavault-dark text-white overflow-hidden relative" data-page="about">
       <BackgroundEffects />
       <Navigation />
 
@@ -84,7 +84,7 @@ export default function AboutPage() {
       <div className="fixed top-0 right-8 h-full w-6 z-20 pointer-events-none hidden md:block">
         <div className="h-full w-2 bg-white/10 mx-auto">
           <div
-            className="w-full bg-[#F6FF00]"
+            className="w-full bg-pikavault-yellow"
             style={{
               height: `${(activeStep + 1) * 25}%`,
               transition: "height 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67)",
@@ -95,7 +95,7 @@ export default function AboutPage() {
           <div
             key={step}
             className={`absolute w-6 h-6 left-0 transform -translate-x-1/2 transition-all duration-300 ${
-              step <= activeStep ? "bg-[#F6FF00]" : "bg-white/20"
+              step <= activeStep ? "bg-pikavault-yellow" : "bg-white/20"
             }`}
             style={{ top: `${step * 25 + 25}%` }}
           ></div>

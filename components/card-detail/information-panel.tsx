@@ -90,7 +90,7 @@ export function InformationPanel({ card, isWatchlisted, onWatchlistToggle, onSou
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
           >
             <span className="text-white">{card.name}</span>
-            <span className="text-[#F6FF00] ml-4">#{card.setNumber}</span>
+            <span className="text-pikavault-yellow ml-4">#{card.setNumber}</span>
           </h1>
 
           {/* Rarity indicator */}
@@ -102,7 +102,7 @@ export function InformationPanel({ card, isWatchlisted, onWatchlistToggle, onSou
           >
             <div className="flex items-center justify-center h-full">
               <span
-                className="text-xs font-bold text-[#0A0A0A]"
+                className="text-xs font-bold text-pikavault-dark"
                 style={{ fontFamily: "'Monument Extended', sans-serif" }}
               >
                 {card.rarity.toUpperCase()}
@@ -120,13 +120,13 @@ export function InformationPanel({ card, isWatchlisted, onWatchlistToggle, onSou
         <div ref={priceRef} className="space-y-2">
           <div className="flex items-baseline space-x-4">
             <h2
-              className="text-6xl md:text-7xl font-black text-[#FF2D55]"
+              className="text-6xl md:text-7xl font-black text-pikavault-pink"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
             >
               ${card.price}
             </h2>
             <div
-              className={`text-xl font-bold ${card.priceChange24h >= 0 ? "text-[#00F5FF]" : "text-[#FF2D55]"}`}
+              className={`text-xl font-bold ${card.priceChange24h >= 0 ? "text-pikavault-cyan" : "text-pikavault-pink"}`}
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
               {card.priceChange24h >= 0 ? "+" : ""}
@@ -177,7 +177,7 @@ export function InformationPanel({ card, isWatchlisted, onWatchlistToggle, onSou
             <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Auth Hash</span>
             <button
               onClick={() => copyHash(card.authenticationHash)}
-              className="flex items-center space-x-2 text-white/70 hover:text-[#F6FF00] transition-colors"
+              className="flex items-center space-x-2 text-white/70 hover:text-pikavault-yellow transition-colors"
             >
               <span className="font-mono text-sm">{truncateHash(card.authenticationHash)}</span>
               <Copy className="w-4 h-4" />
@@ -191,7 +191,7 @@ export function InformationPanel({ card, isWatchlisted, onWatchlistToggle, onSou
               href={`https://etherscan.io/tx/${card.blockchainTxHash}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-2 text-[#00F5FF] hover:text-[#00F5FF]/80 transition-colors"
+              className="flex items-center space-x-2 text-pikavault-cyan hover:text-pikavault-cyan/80 transition-colors"
             >
               <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Verified</span>
               <ExternalLink className="w-4 h-4" />
@@ -204,7 +204,7 @@ export function InformationPanel({ card, isWatchlisted, onWatchlistToggle, onSou
       <div className="space-y-4">
         {/* Primary CTA */}
         <Button
-          className="w-full bg-[#F6FF00] hover:bg-[#F6FF00]/90 text-[#0A0A0A] text-xl font-black py-6 rounded-none transition-all duration-300 hover:scale-105"
+          className="w-full bg-pikavault-yellow hover:bg-pikavault-yellow/90 text-pikavault-dark text-xl font-black py-6 rounded-none transition-all duration-300 hover:scale-105"
           style={{ fontFamily: "'Monument Extended', sans-serif" }}
           onClick={() => onSound("click")}
           onMouseEnter={() => onSound("hover")}
@@ -214,7 +214,7 @@ export function InformationPanel({ card, isWatchlisted, onWatchlistToggle, onSou
 
         {/* Secondary CTA */}
         <Button
-          className="w-full bg-transparent border-4 border-[#FF2D55] hover:bg-[#FF2D55]/10 text-white text-lg font-bold py-4 rounded-none transition-all duration-300"
+          className="w-full bg-transparent border-4 border-pikavault-pink hover:bg-pikavault-pink/10 text-white text-lg font-bold py-4 rounded-none transition-all duration-300"
           style={{ fontFamily: "'Monument Extended', sans-serif" }}
           onClick={() => onSound("click")}
           onMouseEnter={() => onSound("hover")}
@@ -231,7 +231,7 @@ export function InformationPanel({ card, isWatchlisted, onWatchlistToggle, onSou
             }}
             className={`p-4 border-2 transition-all duration-300 ${
               isWatchlisted
-                ? "bg-[#FF2D55]/20 border-[#FF2D55] text-[#FF2D55]"
+                ? "bg-pikavault-pink/20 border-pikavault-pink text-pikavault-pink"
                 : "bg-transparent border-white/30 text-white hover:border-white/60"
             }`}
           >
@@ -272,7 +272,7 @@ export function InformationPanel({ card, isWatchlisted, onWatchlistToggle, onSou
 
           <Button
             onClick={() => onSound("click")}
-            className="bg-[#00F5FF] hover:bg-[#00F5FF]/90 text-[#0A0A0A] font-bold px-6 py-2 rounded-none"
+            className="bg-pikavault-cyan hover:bg-pikavault-cyan/90 text-pikavault-dark font-bold px-6 py-2 rounded-none"
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
           >
             CONTACT
@@ -282,7 +282,7 @@ export function InformationPanel({ card, isWatchlisted, onWatchlistToggle, onSou
 
       {/* Copy notification */}
       {copied && (
-        <div className="fixed top-24 right-8 bg-[#00FF85] text-[#0A0A0A] px-4 py-2 font-bold z-50">
+        <div className="fixed top-24 right-8 bg-[#00FF85] text-pikavault-dark px-4 py-2 font-bold z-50">
           Hash copied to clipboard!
         </div>
       )}

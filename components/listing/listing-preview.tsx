@@ -47,14 +47,14 @@ export function ListingPreview({ cardData, uploadedImages, isProcessing }: Listi
 
         <div className="space-y-8">
           {/* Card preview */}
-          <div className="relative aspect-[3/4] bg-[#0A0A0A] border-4 overflow-hidden">
+          <div className="relative aspect-[3/4] bg-pikavault-dark border-4 overflow-hidden">
             {uploadedImages.length > 0 ? (
               <div
                 className="w-full h-full bg-cover bg-center"
                 style={{ backgroundImage: `url(${uploadedImages[0]})` }}
               >
                 {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0A0A0A]/90"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-pikavault-dark/90"></div>
 
                 {/* Card content */}
                 <div className="absolute bottom-0 left-0 w-full p-4">
@@ -95,7 +95,7 @@ export function ListingPreview({ cardData, uploadedImages, isProcessing }: Listi
 
                 {/* Condition badge */}
                 {cardData.condition && (
-                  <div className="absolute top-4 right-4 px-2 py-1 bg-[#0A0A0A]/80 border border-white/50">
+                  <div className="absolute top-4 right-4 px-2 py-1 bg-pikavault-dark/80 border border-white/50">
                     <p className="text-xs font-bold" style={{ fontFamily: "'Monument Extended', sans-serif" }}>
                       {cardData.condition}
                     </p>
@@ -117,7 +117,7 @@ export function ListingPreview({ cardData, uploadedImages, isProcessing }: Listi
               <div className="flex justify-between items-center">
                 <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Price</span>
                 <span
-                  className="text-3xl font-black text-[#FF2D55]"
+                  className="text-3xl font-black text-pikavault-pink"
                   style={{ fontFamily: "'Monument Extended', sans-serif" }}
                 >
                   ${cardData.price || cardData.suggestedPrice}
@@ -144,8 +144,8 @@ export function ListingPreview({ cardData, uploadedImages, isProcessing }: Listi
               TOKENIZATION PREVIEW
             </h4>
 
-            <div className="bg-[#0A0A0A] p-4 border-l-4 border-[#F6FF00] font-mono text-sm">
-              <p className="text-[#F6FF00]">// Card will be tokenized with the following metadata</p>
+            <div className="bg-pikavault-dark p-4 border-l-4 border-pikavault-yellow font-mono text-sm">
+              <p className="text-pikavault-yellow">// Card will be tokenized with the following metadata</p>
               <p className="text-white/70">
                 {`{
   "name": "${cardData.name || "Card Name"}",
@@ -167,8 +167,8 @@ export function ListingPreview({ cardData, uploadedImages, isProcessing }: Listi
 
           {/* Processing indicator */}
           {isProcessing && (
-            <div className="bg-[#0A0A0A] p-4 border-l-4 border-[#00F5FF] flex items-center space-x-4">
-              <div className="w-6 h-6 border-4 border-[#00F5FF] border-t-transparent rounded-full animate-spin"></div>
+            <div className="bg-pikavault-dark p-4 border-l-4 border-pikavault-cyan flex items-center space-x-4">
+              <div className="w-6 h-6 border-4 border-pikavault-cyan border-t-transparent rounded-full animate-spin"></div>
               <p style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Processing card data...</p>
             </div>
           )}

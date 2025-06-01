@@ -75,14 +75,14 @@ export function MissionStatement() {
           >
             <span className="text-white">PHYSICAL CARDS.</span>
             <br />
-            <span className="text-[#F6FF00]">DIGITAL OWNERSHIP.</span>
+            <span className="text-pikavault-yellow">DIGITAL OWNERSHIP.</span>
             <br />
             <span className="text-white">ABSOLUTE SECURITY.</span>
           </h2>
 
           {/* Diagonal slashes */}
-          <div className="diagonal-slash absolute top-1/4 right-1/4 w-full h-4 bg-[#FF2D55] transform rotate-12 origin-left z-0"></div>
-          <div className="diagonal-slash absolute bottom-1/4 left-1/4 w-full h-4 bg-[#FF2D55] transform -rotate-12 origin-right z-0"></div>
+          <div className="diagonal-slash absolute top-1/4 right-1/4 w-full h-4 bg-pikavault-pink transform rotate-12 origin-left z-0"></div>
+          <div className="diagonal-slash absolute bottom-1/4 left-1/4 w-full h-4 bg-pikavault-pink transform -rotate-12 origin-right z-0"></div>
         </div>
 
         <div className="max-w-4xl mx-auto my-24">
@@ -107,7 +107,7 @@ export function MissionStatement() {
               TOTAL TRADES
             </p>
             <h3
-              className="text-5xl md:text-7xl font-black text-[#F6FF00]"
+              className="text-5xl md:text-7xl font-black text-pikavault-yellow"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
             >
               10,547+
@@ -119,7 +119,7 @@ export function MissionStatement() {
               AVERAGE RATING
             </p>
             <h3
-              className="text-5xl md:text-7xl font-black text-[#F6FF00]"
+              className="text-5xl md:text-7xl font-black text-pikavault-yellow"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
             >
               4.9/5
@@ -131,7 +131,7 @@ export function MissionStatement() {
               SUCCESS RATE
             </p>
             <h3
-              className="text-5xl md:text-7xl font-black text-[#F6FF00]"
+              className="text-5xl md:text-7xl font-black text-pikavault-yellow"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
             >
               99.8%

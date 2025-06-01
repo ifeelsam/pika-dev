@@ -27,18 +27,18 @@ export function Navigation() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrollPosition > 50 ? "bg-[#0A0A0A]/90 backdrop-blur-md py-3" : "bg-transparent py-6"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrollPosition > 50 ? "bg-pikavault-dark/90 backdrop-blur-md py-3" : "bg-transparent py-6"
         }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link
           href="/"
-          className="text-2xl font-black text-[#F6FF00] tracking-wider relative group"
+          className="text-2xl font-black text-pikavault-yellow tracking-wider relative group"
           style={{ fontFamily: "'Monument Extended', sans-serif" }}
         >
           PIKA
           <span className="text-white">VAULT</span>
-          <span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-[#F6FF00] group-hover:w-full transition-all duration-300"></span>
+          <span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-pikavault-yellow group-hover:w-full transition-all duration-300"></span>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-8">
@@ -46,11 +46,11 @@ export function Navigation() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-white hover:text-[#F6FF00] relative group text-lg font-medium tracking-wider"
+              className="text-white hover:text-pikavault-yellow relative group text-lg font-medium tracking-wider"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
               {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#F6FF00] group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-pikavault-yellow group-hover:w-full transition-all duration-300"></span>
             </Link>
           ))}
 
@@ -61,7 +61,7 @@ export function Navigation() {
           <WalletConnection />
 
           <button
-            className="text-white hover:text-[#F6FF00] transition-colors"
+            className="text-white hover:text-pikavault-yellow transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -71,13 +71,13 @@ export function Navigation() {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-[#0A0A0A] pt-24 px-6 z-40 md:hidden">
+        <div className="fixed inset-0 bg-pikavault-dark pt-24 px-6 z-40 md:hidden">
           <nav className="flex flex-col space-y-8">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-white hover:text-[#F6FF00] text-2xl font-bold tracking-wider"
+                className="text-white hover:text-pikavault-yellow text-2xl font-bold tracking-wider"
                 style={{ fontFamily: "'Monument Extended', sans-serif" }}
                 onClick={() => setIsMenuOpen(false)}
               >

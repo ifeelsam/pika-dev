@@ -53,6 +53,12 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        pikavault: {
+          yellow: "#F6FF00",
+          pink: "#FF2D55",
+          cyan: "#00F5FF",
+          dark: "#0A0A0A",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

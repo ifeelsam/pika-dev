@@ -35,12 +35,12 @@ export function PikaCard({ id, name, rarity, imageUrl, image, set, number, price
     rare: {
       borderColor: "#00F5FF",
       glowColor: "rgba(0, 245, 255, 0.4)",
-      badgeColor: "bg-[#00F5FF] text-black",
+      badgeColor: "bg-pikavault-cyan text-black",
     },
     epic: {
       borderColor: "#FF2D55",
       glowColor: "rgba(255, 45, 85, 0.5)",
-      badgeColor: "bg-[#FF2D55] text-white",
+      badgeColor: "bg-pikavault-pink text-white",
     },
     "ultra rare": {
       borderColor: "#FF6B35",
@@ -50,7 +50,7 @@ export function PikaCard({ id, name, rarity, imageUrl, image, set, number, price
     legendary: {
       borderColor: "#F6FF00",
       glowColor: "rgba(246, 255, 0, 0.6)",
-      badgeColor: "bg-[#F6FF00] text-black",
+      badgeColor: "bg-pikavault-yellow text-black",
     },
   }
 
@@ -118,7 +118,7 @@ export function PikaCard({ id, name, rarity, imageUrl, image, set, number, price
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className="absolute inset-0 rounded-none bg-[#0A0A0A] border-4 transition-all duration-300 overflow-hidden transform-gpu"
+        className="absolute inset-0 rounded-none bg-pikavault-dark border-4 transition-all duration-300 overflow-hidden transform-gpu"
         style={{
           borderColor: currentStyle.borderColor,
           boxShadow: isHovered ? `0 0 30px ${currentStyle.glowColor}` : "none",
@@ -135,7 +135,7 @@ export function PikaCard({ id, name, rarity, imageUrl, image, set, number, price
           />
 
           {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0A0A0A]/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-pikavault-dark/90"></div>
 
           {/* Card content */}
           <div className="absolute bottom-0 left-0 w-full p-4">
@@ -160,7 +160,7 @@ export function PikaCard({ id, name, rarity, imageUrl, image, set, number, price
 
       {/* Card back shadow for 3D effect */}
       <div
-        className="absolute inset-0 bg-[#0A0A0A] border-4 border-[#0A0A0A] -z-10 transition-all duration-300"
+        className="absolute inset-0 bg-pikavault-dark border-4 border-pikavault-dark -z-10 transition-all duration-300"
         style={{
           transform: isHovered ? "translate(8px, 8px)" : "translate(4px, 4px)",
         }}

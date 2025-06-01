@@ -51,7 +51,7 @@ export function FilterBar() {
           {hasActiveFilters && (
             <button
               onClick={resetFilters}
-              className="flex items-center space-x-2 text-white/70 hover:text-[#F6FF00] transition-colors group"
+              className="flex items-center space-x-2 text-white/70 hover:text-pikavault-yellow transition-colors group"
             >
               <X className="w-5 h-5 group-hover:scale-125 transition-transform" />
               <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>RESET</span>
@@ -81,7 +81,7 @@ export function FilterBar() {
                       px-4 py-3 border-4 transition-all duration-300
                       ${
                         option.active
-                          ? "border-[#F6FF00] bg-[#F6FF00]/10 scale-105"
+                          ? "border-pikavault-yellow bg-pikavault-yellow/10 scale-105"
                           : "border-white/20 hover:border-white/40"
                       }
                     `}

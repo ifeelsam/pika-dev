@@ -136,7 +136,7 @@ export function CardInspectionModal({ isOpen, onClose, card, currentView, onView
                 onClick={() => onViewChange("front")}
                 className={`px-3 py-1 border transition-all duration-300 ${
                   currentView === "front"
-                    ? "bg-[#F6FF00] border-[#F6FF00] text-[#0A0A0A]"
+                    ? "bg-pikavault-yellow border-pikavault-yellow text-pikavault-dark"
                     : "bg-transparent border-white/30 text-white hover:border-white/60"
                 }`}
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
@@ -148,7 +148,7 @@ export function CardInspectionModal({ isOpen, onClose, card, currentView, onView
                 onClick={() => onViewChange("back")}
                 className={`px-3 py-1 border transition-all duration-300 ${
                   currentView === "back"
-                    ? "bg-[#F6FF00] border-[#F6FF00] text-[#0A0A0A]"
+                    ? "bg-pikavault-yellow border-pikavault-yellow text-pikavault-dark"
                     : "bg-transparent border-white/30 text-white hover:border-white/60"
                 }`}
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
@@ -161,7 +161,7 @@ export function CardInspectionModal({ isOpen, onClose, card, currentView, onView
                   onClick={() => onViewChange("holo")}
                   className={`px-3 py-1 border transition-all duration-300 ${
                     currentView === "holo"
-                      ? "bg-[#F6FF00] border-[#F6FF00] text-[#0A0A0A]"
+                      ? "bg-pikavault-yellow border-pikavault-yellow text-pikavault-dark"
                       : "bg-transparent border-white/30 text-white hover:border-white/60"
                   }`}
                   style={{ fontFamily: "'Space Grotesk', sans-serif" }}
@@ -196,7 +196,7 @@ export function CardInspectionModal({ isOpen, onClose, card, currentView, onView
 
             <button
               onClick={onClose}
-              className="p-2 border border-white/30 text-white hover:border-white/60 hover:text-[#FF2D55] transition-colors"
+              className="p-2 border border-white/30 text-white hover:border-white/60 hover:text-pikavault-pink transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -226,8 +226,8 @@ export function CardInspectionModal({ isOpen, onClose, card, currentView, onView
 
             {/* Condition details overlay */}
             {zoom > 2 && (
-              <div className="absolute top-4 left-4 bg-black/80 p-2 border border-[#F6FF00]">
-                <p className="text-xs text-[#F6FF00]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              <div className="absolute top-4 left-4 bg-black/80 p-2 border border-pikavault-yellow">
+                <p className="text-xs text-pikavault-yellow" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   {card.conditionDescription}
                 </p>
               </div>

@@ -52,12 +52,12 @@ export function ProcessVisualization({ activeStep }: ProcessVisualizationProps) 
       visualComponent: (
         <div className="relative w-full h-full">
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-48 h-64 border-4 border-[#F6FF00] relative overflow-hidden">
-              <div className="absolute inset-0 bg-[#F6FF00]/10"></div>
-              <div className="absolute top-0 left-0 w-full h-2 bg-[#F6FF00] animate-pulse"></div>
-              <div className="absolute bottom-0 left-0 w-full h-2 bg-[#F6FF00] animate-pulse"></div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-[#F6FF00] rounded-full"></div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 border-2 border-[#F6FF00]/50 rounded-full animate-ping"></div>
+            <div className="w-48 h-64 border-4 border-pikavault-yellow relative overflow-hidden">
+              <div className="absolute inset-0 bg-pikavault-yellow/10"></div>
+              <div className="absolute top-0 left-0 w-full h-2 bg-pikavault-yellow animate-pulse"></div>
+              <div className="absolute bottom-0 left-0 w-full h-2 bg-pikavault-yellow animate-pulse"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-pikavault-yellow rounded-full"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 border-2 border-pikavault-yellow/50 rounded-full animate-ping"></div>
             </div>
           </div>
         </div>
@@ -73,13 +73,13 @@ export function ProcessVisualization({ activeStep }: ProcessVisualizationProps) 
       visualComponent: (
         <div className="relative w-full h-full">
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-48 h-48 border-4 border-[#00F5FF] relative transform rotate-45">
-              <div className="absolute inset-0 bg-[#00F5FF]/10"></div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-[#00F5FF] transform -rotate-45 flex items-center justify-center">
-                <div className="w-16 h-16 bg-[#00F5FF]/30 animate-pulse"></div>
+            <div className="w-48 h-48 border-4 border-pikavault-cyan relative transform rotate-45">
+              <div className="absolute inset-0 bg-pikavault-cyan/10"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-pikavault-cyan transform -rotate-45 flex items-center justify-center">
+                <div className="w-16 h-16 bg-pikavault-cyan/30 animate-pulse"></div>
               </div>
-              <div className="absolute top-0 left-0 w-6 h-6 bg-[#00F5FF]"></div>
-              <div className="absolute bottom-0 right-0 w-6 h-6 bg-[#00F5FF]"></div>
+              <div className="absolute top-0 left-0 w-6 h-6 bg-pikavault-cyan"></div>
+              <div className="absolute bottom-0 right-0 w-6 h-6 bg-pikavault-cyan"></div>
             </div>
           </div>
         </div>
@@ -95,21 +95,21 @@ export function ProcessVisualization({ activeStep }: ProcessVisualizationProps) 
       visualComponent: (
         <div className="relative w-full h-full">
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-48 h-48 border-4 border-[#FF2D55] relative">
-              <div className="absolute inset-0 bg-[#FF2D55]/10"></div>
+            <div className="w-48 h-48 border-4 border-pikavault-pink relative">
+              <div className="absolute inset-0 bg-pikavault-pink/10"></div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 grid grid-cols-4 grid-rows-4 gap-1">
                 {Array.from({ length: 16 }).map((_, i) => (
                   <div
                     key={i}
-                    className="bg-[#FF2D55]"
+                    className="bg-pikavault-pink"
                     style={{
                       opacity: Math.random() > 0.5 ? 1 : 0.3,
                     }}
                   ></div>
                 ))}
               </div>
-              <div className="absolute top-0 left-0 w-full h-1 bg-[#FF2D55] animate-pulse"></div>
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-[#FF2D55] animate-pulse"></div>
+              <div className="absolute top-0 left-0 w-full h-1 bg-pikavault-pink animate-pulse"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-pikavault-pink animate-pulse"></div>
             </div>
           </div>
         </div>
@@ -147,7 +147,7 @@ export function ProcessVisualization({ activeStep }: ProcessVisualizationProps) 
           className="text-4xl md:text-5xl lg:text-6xl font-black mb-24 text-center"
           style={{ fontFamily: "'Monument Extended', sans-serif" }}
         >
-          THE <span className="text-[#F6FF00]">PROCESS</span>
+          THE <span className="text-pikavault-yellow">PROCESS</span>
         </h2>
 
         <div className="relative">

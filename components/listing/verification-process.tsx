@@ -106,7 +106,7 @@ export function VerificationProcess({ cardData, updateCardData, onSound }: Verif
               }}
               className={`p-4 border-4 transition-all duration-300 ${
                 cardData.condition === grade.id
-                  ? "border-[#F6FF00] bg-[#F6FF00]/10"
+                  ? "border-pikavault-yellow bg-pikavault-yellow/10"
                   : "border-white/30 hover:border-white/60"
               }`}
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
@@ -124,12 +124,12 @@ export function VerificationProcess({ cardData, updateCardData, onSound }: Verif
           value={cardData.conditionNotes}
           onChange={(e) => updateCardData({ conditionNotes: e.target.value })}
           placeholder="Add detailed condition notes (optional)..."
-          className="w-full bg-[#0A0A0A] border-4 border-white/30 focus:border-[#F6FF00] p-4 text-white outline-none transition-colors duration-300 min-h-[100px]"
+          className="w-full bg-pikavault-dark border-4 border-white/30 focus:border-pikavault-yellow p-4 text-white outline-none transition-colors duration-300 min-h-[100px]"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         ></textarea>
 
         {cardData.condition && (
-          <div className="bg-[#0A0A0A] border-l-4 border-[#00F5FF] p-4">
+          <div className="bg-pikavault-dark border-l-4 border-pikavault-cyan p-4">
             <p style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Condition impact on price:{" "}
               <span className="font-bold">
@@ -169,7 +169,7 @@ export function VerificationProcess({ cardData, updateCardData, onSound }: Verif
         </div>
 
         {showPriceTooltip && (
-          <div className="bg-[#0A0A0A] border-4 border-[#F6FF00] p-4 relative">
+          <div className="bg-pikavault-dark border-4 border-pikavault-yellow p-4 relative">
             <p style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Our AI analyzes recent sales data to suggest an optimal price for your card based on its condition,
               rarity, and current market trends.
@@ -197,7 +197,7 @@ export function VerificationProcess({ cardData, updateCardData, onSound }: Verif
           <div className="flex justify-between items-center">
             <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Suggested Price</span>
             <span
-              className="text-3xl font-black text-[#F6FF00]"
+              className="text-3xl font-black text-pikavault-yellow"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
             >
               ${cardData.suggestedPrice}
@@ -207,7 +207,7 @@ export function VerificationProcess({ cardData, updateCardData, onSound }: Verif
             <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Confidence</span>
             <div className="flex items-center space-x-2">
               <div className="w-24 h-3 bg-white/20">
-                <div className="h-full bg-[#00F5FF]" style={{ width: `${marketData.confidence}%` }}></div>
+                <div className="h-full bg-pikavault-cyan" style={{ width: `${marketData.confidence}%` }}></div>
               </div>
               <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{marketData.confidence}%</span>
             </div>
@@ -225,7 +225,7 @@ export function VerificationProcess({ cardData, updateCardData, onSound }: Verif
               value={cardData.price || ""}
               onChange={(e) => updateCardData({ price: Number.parseFloat(e.target.value) || 0 })}
               placeholder={cardData.suggestedPrice?.toString()}
-              className="w-full bg-[#0A0A0A] border-4 border-white/30 focus:border-[#F6FF00] p-4 pl-10 text-white outline-none transition-colors duration-300 text-xl"
+              className="w-full bg-pikavault-dark border-4 border-white/30 focus:border-pikavault-yellow p-4 pl-10 text-white outline-none transition-colors duration-300 text-xl"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
             />
           </div>
@@ -246,7 +246,7 @@ export function VerificationProcess({ cardData, updateCardData, onSound }: Verif
             }}
             className={`p-4 border-4 transition-all duration-300 ${
               cardData.listingType === "fixed"
-                ? "border-[#F6FF00] bg-[#F6FF00]/10"
+                ? "border-pikavault-yellow bg-pikavault-yellow/10"
                 : "border-white/30 hover:border-white/60"
             }`}
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
@@ -261,7 +261,7 @@ export function VerificationProcess({ cardData, updateCardData, onSound }: Verif
             }}
             className={`p-4 border-4 transition-all duration-300 ${
               cardData.listingType === "auction"
-                ? "border-[#F6FF00] bg-[#F6FF00]/10"
+                ? "border-pikavault-yellow bg-pikavault-yellow/10"
                 : "border-white/30 hover:border-white/60"
             }`}
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
@@ -288,7 +288,7 @@ export function VerificationProcess({ cardData, updateCardData, onSound }: Verif
               }}
               className={`p-3 border-2 transition-all duration-300 ${
                 cardData.duration === duration.id
-                  ? "border-[#00F5FF] bg-[#00F5FF]/10"
+                  ? "border-pikavault-cyan bg-pikavault-cyan/10"
                   : "border-white/30 hover:border-white/60"
               }`}
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
@@ -330,7 +330,7 @@ export function VerificationProcess({ cardData, updateCardData, onSound }: Verif
               You Receive
             </span>
             <span
-              className="text-xl font-black text-[#00F5FF]"
+              className="text-xl font-black text-pikavault-cyan"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
             >
               ${((cardData.price || cardData.suggestedPrice) * 0.925).toFixed(2)}

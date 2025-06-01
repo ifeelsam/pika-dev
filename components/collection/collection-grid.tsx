@@ -150,7 +150,7 @@ export function CollectionGrid({ selectedCards, setSelectedCards }: CollectionGr
                   {/* Card container */}
                   <div
                     className={`
-                      relative bg-[#0A0A0A] border-4 overflow-hidden transform-gpu
+                      relative bg-pikavault-dark border-4 overflow-hidden transform-gpu
                       transition-all duration-300
                       ${
                         isSelected
@@ -172,7 +172,7 @@ export function CollectionGrid({ selectedCards, setSelectedCards }: CollectionGr
                       style={{ backgroundImage: `url(${card.imageUrl})` }}
                     >
                       {/* Overlay gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0A0A0A]/90"></div>
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-pikavault-dark/90"></div>
 
                       {/* Selection checkbox */}
                       <div
@@ -182,13 +182,13 @@ export function CollectionGrid({ selectedCards, setSelectedCards }: CollectionGr
                           ${
                             isSelected
                               ? `bg-[${rarityColor}] border-[${rarityColor}]`
-                              : "bg-[#0A0A0A]/70 border-white/30 opacity-0 group-hover:opacity-100"
+                              : "bg-pikavault-dark/70 border-white/30 opacity-0 group-hover:opacity-100"
                           }
                           border-2
                         `}
                         style={{ clipPath: rarityShape }}
                       >
-                        {isSelected && <Check className="w-5 h-5 text-[#0A0A0A]" />}
+                        {isSelected && <Check className="w-5 h-5 text-pikavault-dark" />}
                       </div>
 
                       {/* Rarity indicator */}
@@ -203,11 +203,11 @@ export function CollectionGrid({ selectedCards, setSelectedCards }: CollectionGr
                       {/* Ownership marker - diagonal slash */}
                       <div className="absolute top-0 left-0 w-16 h-16 overflow-hidden">
                         <div
-                          className="absolute top-0 left-0 w-24 h-6 bg-[#F6FF00] rotate-45 origin-top-left"
+                          className="absolute top-0 left-0 w-24 h-6 bg-pikavault-yellow rotate-45 origin-top-left"
                           style={{ transform: "rotate(45deg) translate(-3px, -10px)" }}
                         >
                           <p
-                            className="text-[#0A0A0A] text-[10px] font-bold text-center"
+                            className="text-pikavault-dark text-[10px] font-bold text-center"
                             style={{ fontFamily: "'Monument Extended', sans-serif" }}
                           >
                             OWNED
@@ -219,11 +219,11 @@ export function CollectionGrid({ selectedCards, setSelectedCards }: CollectionGr
                       <div
                         className={`
                           absolute top-3 right-12 px-2 py-1
-                          ${card.priceChange >= 0 ? "bg-[#00F5FF]" : "bg-[#FF2D55]"}
+                          ${card.priceChange >= 0 ? "bg-pikavault-cyan" : "bg-pikavault-pink"}
                         `}
                       >
                         <p
-                          className="text-[#0A0A0A] text-sm font-bold"
+                          className="text-pikavault-dark text-sm font-bold"
                           style={{ fontFamily: "'Monument Extended', sans-serif" }}
                         >
                           {card.priceChange >= 0 ? "+" : ""}
@@ -255,15 +255,15 @@ export function CollectionGrid({ selectedCards, setSelectedCards }: CollectionGr
 
                       {/* Quick action buttons (visible on hover) */}
                       {isHovered && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-[#0A0A0A]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute inset-0 flex items-center justify-center bg-pikavault-dark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <div className="flex space-x-4">
-                            <button className="p-3 bg-[#F6FF00] text-[#0A0A0A]">
+                            <button className="p-3 bg-pikavault-yellow text-pikavault-dark">
                               <Eye className="w-5 h-5" />
                             </button>
-                            <button className="p-3 bg-[#FF2D55] text-white">
+                            <button className="p-3 bg-pikavault-pink text-white">
                               <Tag className="w-5 h-5" />
                             </button>
-                            <button className="p-3 bg-[#00F5FF] text-[#0A0A0A]">
+                            <button className="p-3 bg-pikavault-cyan text-pikavault-dark">
                               <Share2 className="w-5 h-5" />
                             </button>
                           </div>
@@ -287,7 +287,7 @@ export function CollectionGrid({ selectedCards, setSelectedCards }: CollectionGr
               }}
             >
               <div className="aspect-[3/4] border-4 border-dashed border-white/20 flex items-center justify-center">
-                <div className="text-[#F6FF00] text-5xl">+</div>
+                <div className="text-pikavault-yellow text-5xl">+</div>
               </div>
             </div>
           ))}
@@ -302,7 +302,7 @@ export function CollectionGrid({ selectedCards, setSelectedCards }: CollectionGr
               <div
                 key={card.id}
                 className={`
-                  relative bg-[#0A0A0A] border-l-4 p-4 cursor-pointer
+                  relative bg-pikavault-dark border-l-4 p-4 cursor-pointer
                   ${isSelected ? `border-[${rarityColor}]` : "border-white/30"}
                   transition-all duration-300 hover:bg-white/5
                 `}
@@ -321,7 +321,7 @@ export function CollectionGrid({ selectedCards, setSelectedCards }: CollectionGr
                       transition-all duration-300
                     `}
                   >
-                    {isSelected && <Check className="w-4 h-4 text-[#0A0A0A]" />}
+                    {isSelected && <Check className="w-4 h-4 text-pikavault-dark" />}
                   </div>
 
                   <div
@@ -344,7 +344,7 @@ export function CollectionGrid({ selectedCards, setSelectedCards }: CollectionGr
                   <div className="flex items-center space-x-6">
                     <div>
                       <p
-                        className={`text-sm ${card.priceChange >= 0 ? "text-[#00F5FF]" : "text-[#FF2D55]"}`}
+                        className={`text-sm ${card.priceChange >= 0 ? "text-pikavault-cyan" : "text-pikavault-pink"}`}
                         style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                       >
                         {card.priceChange >= 0 ? "+" : ""}
@@ -371,7 +371,7 @@ export function CollectionGrid({ selectedCards, setSelectedCards }: CollectionGr
         <>
           <div className="fixed inset-0 z-40" onClick={closeContextMenu}></div>
           <div
-            className="fixed z-50 bg-[#0A0A0A] border-4 border-[#F6FF00] p-2 w-48"
+            className="fixed z-50 bg-pikavault-dark border-4 border-pikavault-yellow p-2 w-48"
             style={{
               top: contextMenuPosition.y,
               left: contextMenuPosition.x,
@@ -397,14 +397,14 @@ export function CollectionGrid({ selectedCards, setSelectedCards }: CollectionGr
 
       {/* Custom scrollbar */}
       <div className="fixed top-0 right-0 h-full w-4 z-20 pointer-events-none hidden md:block">
-        <div className="h-full w-1 bg-[#F6FF00]/20 mx-auto">
-          <div className="w-full h-20 bg-[#F6FF00] opacity-50"></div>
+        <div className="h-full w-1 bg-pikavault-yellow/20 mx-auto">
+          <div className="w-full h-20 bg-pikavault-yellow opacity-50"></div>
         </div>
         {/* Measurement marks */}
         {Array.from({ length: 10 }).map((_, index) => (
           <div
             key={index}
-            className="absolute w-4 h-1 bg-[#F6FF00]"
+            className="absolute w-4 h-1 bg-pikavault-yellow"
             style={{ top: `${(index + 1) * 10}%`, right: 0 }}
           ></div>
         ))}

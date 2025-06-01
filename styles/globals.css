@@ -47,6 +47,12 @@ body {
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* PikaVault Custom Colors */
+    --pikavault-yellow: 65 100% 50%;  /* #F6FF00 */
+    --pikavault-pink: 345 100% 59%;   /* #FF2D55 */
+    --pikavault-cyan: 181 100% 48%;   /* #00F5FF */
+    --pikavault-dark: 0 0% 4%;        /* #0A0A0A */
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -81,6 +87,12 @@ body {
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* PikaVault Custom Colors (same in dark mode) */
+    --pikavault-yellow: 65 100% 50%;  /* #F6FF00 */
+    --pikavault-pink: 345 100% 59%;   /* #FF2D55 */
+    --pikavault-cyan: 181 100% 48%;   /* #00F5FF */
+    --pikavault-dark: 0 0% 4%;        /* #0A0A0A */
   }
 }
 

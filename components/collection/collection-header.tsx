@@ -108,17 +108,17 @@ export function CollectionHeader() {
         className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tight"
         style={{ fontFamily: "'Monument Extended', sans-serif" }}
       >
-        {splitText("YOUR")} <span className="text-[#F6FF00]">{splitText("COLLECTION")}</span>
+        {splitText("YOUR")} <span className="text-pikavault-yellow">{splitText("COLLECTION")}</span>
       </h1>
 
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
         <div className="flex flex-col space-y-2">
           <div className="wallet-address flex items-center space-x-2">
-            <div className="w-6 h-6 bg-gradient-to-br from-[#F6FF00] to-[#FF2D55]"></div>
+            <div className="w-6 h-6 bg-gradient-to-br from-pikavault-yellow to-pikavault-pink"></div>
             <p className="text-white/70" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               {truncatedAddress}
             </p>
-            <button onClick={copyAddress} className="p-1 text-white/50 hover:text-[#F6FF00] transition-colors">
+            <button onClick={copyAddress} className="p-1 text-white/50 hover:text-pikavault-yellow transition-colors">
               <Copy className="w-4 h-4" />
             </button>
             {isCopied && (
@@ -126,7 +126,7 @@ export function CollectionHeader() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                className="text-xs text-[#F6FF00]"
+                className="text-xs text-pikavault-yellow"
               >
                 Copied!
               </motion.span>
@@ -136,7 +136,7 @@ export function CollectionHeader() {
           <div className="value-counter">
             <p className="text-2xl font-black" style={{ fontFamily: "'Monument Extended', sans-serif" }}>
               <span className="text-white/50">TOTAL VALUE:</span>{" "}
-              <span className="text-[#F6FF00]">${displayValue.toLocaleString()}</span>
+              <span className="text-pikavault-yellow">${displayValue.toLocaleString()}</span>
             </p>
           </div>
         </div>
@@ -146,7 +146,7 @@ export function CollectionHeader() {
             onClick={() => setViewMode("grid")}
             className={`p-3 border-4 ${
               viewMode === "grid"
-                ? "bg-[#F6FF00]/10 border-[#F6FF00] text-[#F6FF00]"
+                ? "bg-pikavault-yellow/10 border-pikavault-yellow text-pikavault-yellow"
                 : "bg-transparent border-white/20 text-white/70 hover:border-white/40"
             }`}
           >
@@ -157,7 +157,7 @@ export function CollectionHeader() {
             onClick={() => setViewMode("list")}
             className={`p-3 border-4 ${
               viewMode === "list"
-                ? "bg-[#F6FF00]/10 border-[#F6FF00] text-[#F6FF00]"
+                ? "bg-pikavault-yellow/10 border-pikavault-yellow text-pikavault-yellow"
                 : "bg-transparent border-white/20 text-white/70 hover:border-white/40"
             }`}
           >

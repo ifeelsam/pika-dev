@@ -44,7 +44,7 @@ export function TransactionPanel({ isOpen, selectedCards, onClose }: Transaction
   return (
     <div
       ref={panelRef}
-      className="fixed top-0 right-0 w-full sm:w-96 h-full bg-[#0A0A0A] border-l-4 border-[#F6FF00] z-50 transform translate-x-full"
+      className="fixed top-0 right-0 w-full sm:w-96 h-full bg-pikavault-dark border-l-4 border-pikavault-yellow z-50 transform translate-x-full"
     >
       <div className="h-full flex flex-col p-6">
         <div className="flex justify-between items-center mb-8">
@@ -52,7 +52,7 @@ export function TransactionPanel({ isOpen, selectedCards, onClose }: Transaction
             CHECKOUT
           </h2>
 
-          <button onClick={onClose} className="p-2 text-white/70 hover:text-[#F6FF00] transition-colors">
+          <button onClick={onClose} className="p-2 text-white/70 hover:text-pikavault-yellow transition-colors">
             <X className="w-6 h-6" />
           </button>
         </div>
@@ -104,21 +104,21 @@ export function TransactionPanel({ isOpen, selectedCards, onClose }: Transaction
               TOTAL
             </p>
 
-            <p className="text-[#F6FF00] text-2xl font-black" style={{ fontFamily: "'Monument Extended', sans-serif" }}>
+            <p className="text-pikavault-yellow text-2xl font-black" style={{ fontFamily: "'Monument Extended', sans-serif" }}>
               ${totalPrice}
             </p>
           </div>
 
           <div className="space-y-4">
             <Button
-              className="w-full bg-[#F6FF00] hover:bg-[#F6FF00]/90 text-[#0A0A0A] text-lg font-bold py-6 rounded-none"
+              className="w-full bg-pikavault-yellow hover:bg-pikavault-yellow/90 text-pikavault-dark text-lg font-bold py-6 rounded-none"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
             >
               BUY NOW
             </Button>
 
             <Button
-              className="w-full bg-transparent border-4 border-[#FF2D55] hover:bg-[#FF2D55]/10 text-white text-lg font-bold py-6 rounded-none"
+              className="w-full bg-transparent border-4 border-pikavault-pink hover:bg-pikavault-pink/10 text-white text-lg font-bold py-6 rounded-none"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
             >
               PLACE BID
