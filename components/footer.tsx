@@ -1,5 +1,9 @@
+import Link from "next/link";
+
 export function Footer() {
 
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
 
   const footerSocials = [
     { name: "Discord", href: "https://discord.gg/Zsv8mC8NHH" },
@@ -18,7 +22,7 @@ export function Footer() {
               PIKAVAULT
             </h3>
             <p className="text-white/70 mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-              The next evolution in digital collectibles with Neo-Brutalist Maximalism design for 2025 and beyond.
+              The next evolution in digital collectibles and beyond.
             </p>
           </div>
 
@@ -29,13 +33,13 @@ export function Footer() {
             <ul className="space-y-4">
               {["Collection", "Marketplace"].map((item) => (
                 <li key={item}>
-                  <a
+                  <Link
                     href={`/${item.toLowerCase()}`}
                     className="text-white/70 hover:text-[#F6FF00] transition-colors"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     {item}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -67,13 +71,13 @@ export function Footer() {
             <ul className="space-y-4">
               {footerSocials.map((item) => (
                 <li key={item.name}>
-                  <a
+                  <Link
                     href={item.href}
                     className="text-white/70 hover:text-[#F6FF00] transition-colors"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -82,14 +86,14 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/50 text-sm mb-4 md:mb-0" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            © 2025 PikaVault. All rights reserved.
+            © {year} PikaVault. All rights reserved.
           </p>
 
           <div className="flex space-x-6">
             {["Terms", "Privacy", "Support"].map((item) => (
               <a
                 key={item}
-                href="#"
+                href={`/${item.toLowerCase()}`}
                 className="text-white/50 hover:text-[#F6FF00] text-sm transition-colors"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
