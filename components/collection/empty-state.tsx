@@ -5,7 +5,7 @@ import { gsap } from "gsap"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 
-export function EmptyState() {
+export function LockedState() {
   const emptyRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

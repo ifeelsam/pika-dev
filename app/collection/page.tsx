@@ -5,22 +5,22 @@ import { Navigation } from "@/components/navigation"
 import { CollectionHeader } from "@/components/collection/collection-header"
 import { StatsBar } from "@/components/collection/stats-bar"
 import { CollectionGrid } from "@/components/collection/collection-grid"
-import { EmptyState } from "@/components/collection/empty-state"
+import { LockedState } from "@/components/collection/empty-state"
 import { DisconnectedState } from "@/components/collection/disconnected-state"
 import { BatchActionPanel } from "@/components/collection/batch-action-panel"
 import { BackgroundEffects } from "@/components/background-effects"
 import { CollectionProvider } from "@/components/collection/collection-context"
-import { useWalletProtection } from "@/hooks/use-wallet-protection"
+import { useWallet } from "@solana/wallet-adapter-react"
 
 export default function CollectionPage() {
   const [selectedCards, setSelectedCards] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [hasCards, setHasCards] = useState(false)
-  const { isWalletConnected } = useWalletProtection()
+  const { connected } = useWallet()
 
   // Simulate loading state
   useEffect(() => {
-    if (isWalletConnected) {
+    if (connected) {
       const timer = setTimeout(() => {
         setIsLoading(false)
         // For demo purposes, we'll set hasCards to true
@@ -30,10 +30,10 @@ export default function CollectionPage() {
 
       return () => clearTimeout(timer)
     }
-  }, [isWalletConnected])
+  }, [connected])
 
   // Show disconnected state if wallet is not connected
-  if (!isWalletConnected) {
+  if (!connected) {
     return (
       <>
         <Navigation />
@@ -69,7 +69,7 @@ export default function CollectionPage() {
               )}
             </>
           ) : (
-            <EmptyState />
+            <LockedState />
           )}
         </main>
       </div>

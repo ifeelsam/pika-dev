@@ -122,10 +122,7 @@ export function WalletMobileSheet({
                 className="text-3xl font-black text-pikavault-yellow"
                 style={{ fontFamily: "'Monument Extended', sans-serif" }}
               >
-                {walletData.balance} ETH
-              </p>
-              <p className="text-white/70" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                ${walletData.usdBalance}
+                {walletData.balance.toFixed(4)} SOL
               </p>
             </div>
           </div>
@@ -136,7 +133,7 @@ export function WalletMobileSheet({
               className="w-full p-4 bg-transparent border-2 border-white/30 text-white hover:border-white/60 transition-colors flex items-center justify-center space-x-2"
               onMouseEnter={() => playSound("hover")}
               onClick={() => {
-                window.open(`https://etherscan.io/address/${walletData.address}`, "_blank")
+                window.open(`https://explorer.solana.com/address/${walletData.address}?cluster=devnet`, "_blank")
                 playSound("click")
               }}
             >

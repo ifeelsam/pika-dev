@@ -5,6 +5,7 @@ import { gsap } from "gsap"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { Lock, Eye } from "lucide-react"
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
 
 export function DisconnectedState() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -226,46 +227,14 @@ export function DisconnectedState() {
         </div>
 
         {/* Call-to-Action Buttons */}
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 mb-8">
+        {/* <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 mb-8">
           <motion.div whileHover={{ scale: 1.05 }} className="relative">
-            <Button
-              onClick={handleConnectWallet}
-              disabled={isAnimating}
-              className={`
-                w-64 h-16 text-xl font-black rounded-none relative overflow-hidden
-                ${isAnimating
-                  ? "bg-pikavault-pink text-white"
-                  : "bg-gradient-to-r from-pikavault-yellow to-pikavault-cyan text-pikavault-dark hover:from-pikavault-yellow/90 hover:to-pikavault-cyan/90"
-                }
-              `}
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
-              {isAnimating ? (
-                <>
-                  <span className="animate-pulse">CONNECTING...</span>
-                  <div className="absolute inset-0 border-4 border-pikavault-yellow animate-pulse"></div>
-                </>
-              ) : (
-                "CONNECT WALLET"
-              )}
-            </Button>
-            {!isAnimating && (
-              <div className="absolute inset-0 border-4 border-pikavault-yellow -z-10 translate-x-2 translate-y-2 animate-pulse"></div>
-            )}
+            <div className="wallet-adapter-button-trigger">
+              <WalletMultiButton className="w-64 h-16 text-xl font-black rounded-none relative overflow-hidden bg-gradient-to-r from-pikavault-yellow to-pikavault-cyan text-pikavault-dark hover:from-pikavault-yellow/90 hover:to-pikavault-cyan/90" />
+            </div>
+            <div className="absolute inset-0 border-4 border-pikavault-yellow -z-10 translate-x-2 translate-y-2 animate-pulse"></div>
           </motion.div>
-
-          {/* <motion.div whileHover={{ scale: 1.05 }}> */}
-          {/*   <Button */}
-          {/*     onClick={handleViewSample} */}
-          {/*     variant="outline" */}
-          {/*     className="w-64 h-16 text-lg font-bold border-4 border-white/50 text-white bg-transparent hover:bg-white/10 rounded-none" */}
-          {/*     style={{ fontFamily: "'Space Grotesk', sans-serif" }} */}
-          {/*   > */}
-          {/*     <Eye className="w-5 h-5 mr-2" /> */}
-          {/*     VIEW SAMPLE */}
-          {/*   </Button> */}
-          {/* </motion.div> */}
-        </div>
+        </div> */}
       </div>
     </div>
   )

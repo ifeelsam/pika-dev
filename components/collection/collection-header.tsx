@@ -6,8 +6,10 @@ import { useCollection } from "./collection-context"
 import { gsap } from "gsap"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import { useWallet } from "@solana/wallet-adapter-react"
 
 export function CollectionHeader() {
+  const {publicKey} = useWallet();
   const { totalValue, viewMode, setViewMode } = useCollection()
   const headerRef = useRef<HTMLDivElement>(null)
   const [displayValue, setDisplayValue] = useState(0)
@@ -15,7 +17,9 @@ export function CollectionHeader() {
 
   // Wallet address
   const walletAddress = "0xD8a6F7992c37d5A89f8d5DB1579F16fF42a7b809"
-  const truncatedAddress = `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`
+  const truncateAddress = (address: string) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`
+  }
 
   // Animate total value counter
   useEffect(() => {
@@ -43,11 +47,15 @@ export function CollectionHeader() {
     updateValue()
   }, [totalValue])
 
-  // Copy wallet address
+  // Copy address to clipboard
   const copyAddress = () => {
-    navigator.clipboard.writeText(walletAddress)
-    setIsCopied(true)
-    setTimeout(() => setIsCopied(false), 2000)
+    if (publicKey) {
+      navigator.clipboard.writeText(publicKey.toString())
+      setIsCopied(true)
+      setTimeout(() => {
+        setIsCopied(false)
+      }, 2000)
+    }
   }
 
   // Header animations
@@ -116,7 +124,7 @@ export function CollectionHeader() {
           <div className="wallet-address flex items-center space-x-2">
             <div className="w-6 h-6 bg-gradient-to-br from-pikavault-yellow to-pikavault-pink"></div>
             <p className="text-white/70" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-              {truncatedAddress}
+              {publicKey && truncateAddress(publicKey?.toString())}
             </p>
             <button onClick={copyAddress} className="p-1 text-white/50 hover:text-pikavault-yellow transition-colors">
               <Copy className="w-4 h-4" />

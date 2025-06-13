@@ -253,3 +253,79 @@ html {
     transform: translateY(0);
   }
 }
+
+/* Wallet adapter button styles */
+.wallet-adapter-button {
+  background-color: #F6FF00 !important;
+  color: #000000 !important;
+  font-family: 'Monument Extended', sans-serif !important;
+  font-weight: 900 !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 0 !important;
+  transition: all 0.3s ease !important;
+}
+
+.wallet-adapter-button:hover {
+  background-color: rgba(246, 255, 0, 0.9) !important;
+  transform: scale(1.05) !important;
+}
+
+.wallet-adapter-button-trigger {
+  position: relative;
+}
+
+.wallet-adapter-button-trigger::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid #F6FF00;
+  transform: translate(4px, 4px);
+  z-index: -1;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Wallet modal styles */
+.wallet-adapter-modal {
+  background-color: #0A0A0A !important;
+  border: 4px solid #00F5FF !important;
+  clip-path: polygon(0 0, 100% 0, 95% 95%, 5% 100%) !important;
+}
+
+.wallet-adapter-modal-title {
+  font-size: large;
+  color: #FFFFFF !important;
+  font-family: 'Monument Extended', sans-serif !important;
+  font-weight: 900 !important;
+}
+
+.wallet-adapter-modal-list {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.wallet-adapter-modal-list-more {
+  color: #FFFFFF !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
+.wallet-adapter-modal-button-close {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.wallet-adapter-modal-button-close svg {
+  fill: #FFFFFF !important;
+}
+
+.wallet-adapter-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}

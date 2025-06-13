@@ -4,24 +4,49 @@ import { useState, useEffect, useRef } from "react"
 import { ChevronDown, Copy, ExternalLink, Check } from "lucide-react"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { WalletMobileSheet } from "./wallet-mobile-sheet"
-
-// Mock wallet data
-const mockWalletData = {
-  address: "0xD8a6F7992c37d5A89f8d5DB1579F16fF42a7b809",
-  balance: 1.245,
-  network: "Ethereum",
-  usdBalance: 2532.67,
-}
+import { useWallet, useConnection } from "@solana/wallet-adapter-react"
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
+import { LAMPORTS_PER_SOL } from "@solana/web3.js"
 
 export function WalletConnection() {
-  const [connectionState, setConnectionState] = useState<"disconnected" | "connecting" | "connected">("disconnected")
+  const { publicKey, connected, disconnect } = useWallet()
+  const { connection } = useConnection()
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const [walletData, setWalletData] = useState(mockWalletData)
   const [isCopied, setIsCopied] = useState(false)
   const [isDisconnectHovered, setIsDisconnectHovered] = useState(false)
+  const [balance, setBalance] = useState<number>(0)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const isMobile = useMediaQuery("(max-width: 640px)")
   const [isMobileSheetOpen, setIsMobileSheetOpen] = useState(false)
+
+  // Fetch balance when wallet is connected
+  useEffect(() => {
+    if (!publicKey) return
+
+    const fetchBalance = async () => {
+      try {
+        const bal = await connection.getBalance(publicKey)
+        setBalance(bal / LAMPORTS_PER_SOL)
+      } catch (e) {
+        console.error("Error fetching balance:", e)
+      }
+    }
+
+    fetchBalance()
+
+    // Subscribe to balance changes
+    const subscriptionId = connection.onAccountChange(
+      publicKey,
+      (accountInfo) => {
+        setBalance(accountInfo.lamports / LAMPORTS_PER_SOL)
+      },
+      "confirmed"
+    )
+
+    return () => {
+      connection.removeAccountChangeListener(subscriptionId)
+    }
+  }, [publicKey, connection])
 
   // Handle click outside to close dropdown
   useEffect(() => {
@@ -37,47 +62,15 @@ export function WalletConnection() {
     }
   }, [])
 
-  // Handle connect/disconnect
-  const handleConnect = () => {
-    if (connectionState === "disconnected") {
-      // Start connecting animation
-      setConnectionState("connecting")
-
-      // Play sound effect
-      playSound("click")
-
-      // Simulate connection delay
-      setTimeout(() => {
-        setConnectionState("connected")
-        playSound("success")
-      }, 1000)
-    } else if (connectionState === "connected") {
-      // Toggle dropdown or mobile sheet based on screen size
-      if (isMobile) {
-        setIsMobileSheetOpen(!isMobileSheetOpen)
-      } else {
-        setIsDropdownOpen(!isDropdownOpen)
-      }
-      playSound("click")
-    }
-  }
-
-  const handleDisconnect = () => {
-    setConnectionState("disconnected")
-    setIsDropdownOpen(false)
-    setIsMobileSheetOpen(false)
-    playSound("click")
-  }
-
   // Copy address to clipboard
   const copyAddress = () => {
-    navigator.clipboard.writeText(walletData.address)
+    if (publicKey) {
+      navigator.clipboard.writeText(publicKey.toString())
     setIsCopied(true)
-    playSound("success")
-
     setTimeout(() => {
       setIsCopied(false)
     }, 2000)
+    }
   }
 
   // Sound effects
@@ -91,47 +84,39 @@ export function WalletConnection() {
     return `${address.slice(0, 6)}...${address.slice(-4)}`
   }
 
+  if (!connected) {
+    return (
+      <div className="wallet-adapter-button-trigger">
+        <WalletMultiButton />
+      </div>
+    )
+  }
+
   return (
     <div className="relative" ref={dropdownRef}>
       {/* Connect Button */}
       <button
-        onClick={handleConnect}
+        onClick={() => {
+          if (isMobile) {
+            setIsMobileSheetOpen(!isMobileSheetOpen)
+          } else {
+            setIsDropdownOpen(!isDropdownOpen)
+          }
+          playSound("click")
+        }}
         onMouseEnter={() => playSound("hover")}
-        className={`
-          relative overflow-hidden font-bold py-2 px-4 md:py-3 md:px-6 transition-all duration-300
-          ${connectionState === "disconnected" ? "bg-pikavault-yellow text-pikavault-dark" : ""}
-          ${connectionState === "connecting" ? "bg-pikavault-pink text-white wallet-connecting scale-105" : ""}
-          ${connectionState === "connected" ? "bg-pikavault-cyan text-pikavault-dark" : ""}
-        `}
+        className="relative overflow-hidden font-bold py-2 px-4 md:py-3 md:px-6 bg-pikavault-cyan text-pikavault-dark transition-all duration-300"
         style={{ fontFamily: "'Monument Extended', sans-serif" }}
       >
-        {connectionState === "disconnected" && "CONNECT"}
-
-        {connectionState === "connecting" && (
-          <>
-            <span className="glitch-text">CONNECTING...</span>
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-0 left-0 w-full h-full">
-                <div
-                  className="absolute top-0 left-0 w-full h-1 bg-white/30"
-                  style={{ animation: "scan 1s linear infinite" }}
-                ></div>
-              </div>
-            </div>
-          </>
-        )}
-
-        {connectionState === "connected" && (
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-pikavault-yellow"></div>
-            <span className="font-mono">{truncateAddress(walletData.address)}</span>
+          <span className="font-mono">{publicKey && truncateAddress(publicKey.toString())}</span>
             <ChevronDown className="w-4 h-4" />
           </div>
-        )}
       </button>
 
       {/* Dropdown for desktop */}
-      {!isMobile && connectionState === "connected" && isDropdownOpen && (
+      {!isMobile && isDropdownOpen && (
         <div
           className="absolute right-0 mt-2 w-80 bg-pikavault-dark/95 border-4 border-pikavault-cyan z-50"
           style={{
@@ -146,7 +131,7 @@ export function WalletConnection() {
                 WALLET ADDRESS
               </p>
               <div className="flex items-center justify-between bg-pikavault-dark border border-white/20 p-2">
-                <p className="font-mono text-white text-sm truncate">{walletData.address}</p>
+                <p className="font-mono text-white text-sm truncate">{publicKey?.toString()}</p>
                 <button
                   onClick={copyAddress}
                   className="p-1 hover:text-pikavault-yellow transition-colors"
@@ -165,7 +150,7 @@ export function WalletConnection() {
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                 <p className="text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                  {walletData.network}
+                  Solana Devnet
                 </p>
               </div>
             </div>
@@ -180,10 +165,7 @@ export function WalletConnection() {
                   className="text-2xl font-black text-pikavault-yellow"
                   style={{ fontFamily: "'Monument Extended', sans-serif" }}
                 >
-                  {walletData.balance} ETH
-                </p>
-                <p className="text-white/70" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                  ${walletData.usdBalance}
+                  {balance.toFixed(4)} SOL
                 </p>
               </div>
             </div>
@@ -194,7 +176,7 @@ export function WalletConnection() {
                 className="w-full p-2 bg-transparent border-2 border-white/30 text-white hover:border-white/60 transition-colors flex items-center justify-center space-x-2"
                 onMouseEnter={() => playSound("hover")}
                 onClick={() => {
-                  window.open(`https://etherscan.io/address/${walletData.address}`, "_blank")
+                  window.open(`https://explorer.solana.com/address/${publicKey?.toString()}?cluster=devnet`, "_blank")
                   playSound("click")
                 }}
               >
@@ -215,7 +197,11 @@ export function WalletConnection() {
                   playSound("hover")
                 }}
                 onMouseLeave={() => setIsDisconnectHovered(false)}
-                onClick={handleDisconnect}
+                onClick={() => {
+                  disconnect()
+                  setIsDropdownOpen(false)
+                  playSound("click")
+                }}
               >
                 <span style={{ fontFamily: "'Monument Extended', sans-serif" }}>
                   {isDisconnectHovered ? "SURE?" : "DISCONNECT"}
@@ -227,12 +213,20 @@ export function WalletConnection() {
       )}
 
       {/* Mobile sheet */}
-      {isMobile && connectionState === "connected" && (
+      {isMobile && (
         <WalletMobileSheet
           isOpen={isMobileSheetOpen}
           onClose={() => setIsMobileSheetOpen(false)}
-          walletData={walletData}
-          onDisconnect={handleDisconnect}
+          walletData={{
+            address: publicKey?.toString() || "",
+            balance: balance,
+            network: "Solana Devnet",
+            usdBalance: 0,
+          }}
+          onDisconnect={() => {
+            disconnect()
+            setIsMobileSheetOpen(false)
+          }}
           onCopy={copyAddress}
           isCopied={isCopied}
         />

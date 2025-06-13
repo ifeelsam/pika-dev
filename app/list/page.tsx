@@ -9,7 +9,7 @@ import { ListingPreview } from "@/components/listing/listing-preview"
 import { VerificationProcess } from "@/components/listing/verification-process"
 import { PublishConfirmation } from "@/components/listing/publish-confirmation"
 import { CustomToast } from "@/components/ui/custom-toast"
-import { useWalletProtection } from "@/hooks/use-wallet-protection"
+import { useWallet } from "@solana/wallet-adapter-react"
 import { gsap } from "gsap"
 
 export default function ListingPage() {
@@ -33,33 +33,33 @@ export default function ListingPage() {
   })
   const [isProcessing, setIsProcessing] = useState(false)
   const [isPublished, setIsPublished] = useState(false)
+  const [showToast, setShowToast] = useState(false)
   const pageRef = useRef<HTMLDivElement>(null)
 
-  const { isWalletConnected, showToast, requireWalletConnection, handleWalletConnect, handleToastClose } =
-    useWalletProtection()
+  const { connected } = useWallet()
 
   // Check wallet connection on page load
   useEffect(() => {
-    if (!requireWalletConnection()) {
-      // Toast will be shown automatically
+    if (!connected) {
+      setShowToast(true)
     }
-  }, [])
+  }, [connected])
 
   // Auto-save functionality
   useEffect(() => {
     const interval = setInterval(() => {
-      if (cardData.name && isWalletConnected) {
+      if (cardData.name && connected) {
         console.log("Auto-saving listing...")
         // In a real app, this would save to localStorage or backend
       }
     }, 30000)
 
     return () => clearInterval(interval)
-  }, [cardData, isWalletConnected])
+  }, [cardData, connected])
 
   // Page entrance animation
   useEffect(() => {
-    if (pageRef.current && isWalletConnected) {
+    if (pageRef.current && connected) {
       gsap.from(pageRef.current.children, {
         y: 50,
         opacity: 0,
@@ -68,11 +68,14 @@ export default function ListingPage() {
         ease: "power3.out",
       })
     }
-  }, [isWalletConnected])
+  }, [connected])
 
   // Handle image upload
   const handleImageUpload = (images: string[]) => {
-    if (!requireWalletConnection()) return
+    if (!connected) {
+      setShowToast(true)
+      return
+    }
 
     setUploadedImages(images)
     setIsProcessing(true)
@@ -96,14 +99,20 @@ export default function ListingPage() {
 
   // Update card data
   const updateCardData = (data: Partial<typeof cardData>) => {
-    if (!requireWalletConnection()) return
+    if (!connected) {
+      setShowToast(true)
+      return
+    }
 
     setCardData({ ...cardData, ...data })
   }
 
   // Handle step navigation
   const nextStep = () => {
-    if (!requireWalletConnection()) return
+    if (!connected) {
+      setShowToast(true)
+      return
+    }
 
     if (activeStep < 3) {
       setActiveStep(activeStep + 1)
@@ -132,7 +141,7 @@ export default function ListingPage() {
   }
 
   // Show wallet connection requirement if not connected
-  if (!isWalletConnected) {
+  if (!connected) {
     return (
       <>
         <Navigation />
@@ -148,8 +157,8 @@ export default function ListingPage() {
         </div>
         <CustomToast
           isVisible={showToast}
-          onClose={handleToastClose}
-          onConnect={handleWalletConnect}
+          onClose={() => setShowToast(false)}
+          onConnect={() => setShowToast(false)}
           type="wallet_required"
           message="WALLET NOT CONNECTED"
           secondaryMessage="Connect your wallet to list cards"
@@ -366,8 +375,8 @@ export default function ListingPage() {
       {/* Custom Toast */}
       <CustomToast
         isVisible={showToast}
-        onClose={handleToastClose}
-        onConnect={handleWalletConnect}
+        onClose={() => setShowToast(false)}
+        onConnect={() => setShowToast(false)}
         type="wallet_required"
         message="WALLET NOT CONNECTED"
         secondaryMessage="Connect your wallet to list cards"
