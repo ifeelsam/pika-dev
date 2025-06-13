@@ -70,7 +70,7 @@ export function MissionStatement() {
         <div className="relative mb-16">
           <h2
             ref={statementRef}
-            className="text-5xl md:text-7xl lg:text-[120px] font-black leading-none tracking-tight relative z-10"
+            className="text-5xl md:text-7xl lg:text-[87px] font-black leading-none tracking-tight relative z-10"
             style={{ fontFamily: "'Monument Extended', sans-serif" }}
           >
             <span className="text-white">PHYSICAL CARDS.</span>
@@ -81,8 +81,8 @@ export function MissionStatement() {
           </h2>
 
           {/* Diagonal slashes */}
-          <div className="diagonal-slash absolute top-1/4 right-1/4 w-full h-4 bg-pikavault-pink transform rotate-12 origin-left z-0"></div>
-          <div className="diagonal-slash absolute bottom-1/4 left-1/4 w-full h-4 bg-pikavault-pink transform -rotate-12 origin-right z-0"></div>
+          <div className="diagonal-slash absolute top-0 right-1/4 w-full h-4 bg-pikavault-pink transform rotate-12 origin-left -z-10"></div>
+          <div className="diagonal-slash absolute bottom-[95%] left-1/4 w-full h-4 bg-pikavault-pink transform -rotate-12 origin-right -z-10"></div>
         </div>
 
         <div className="max-w-4xl mx-auto my-24">
