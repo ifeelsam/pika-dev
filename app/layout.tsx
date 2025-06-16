@@ -4,7 +4,7 @@ import { WalletContextProvider } from '@/components/providers/wallet-provider'
 
 export const metadata: Metadata = {
   title: 'PikaVault - Digital Card Collection',
-  description: 'Collect and trade digital cards on the Solana blockchain',
+  description: 'Collect and trade digital cards. Only on Solana',
 }
 
 export default function RootLayout({

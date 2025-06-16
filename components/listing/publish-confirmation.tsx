@@ -8,9 +8,16 @@ import Link from "next/link"
 interface PublishConfirmationProps {
   cardData: any
   uploadedImages: string[]
+  transactionSignature?: string | null
+  nftMintAddress?: string | null
 }
 
-export function PublishConfirmation({ cardData, uploadedImages }: PublishConfirmationProps) {
+export function PublishConfirmation({ 
+  cardData, 
+  uploadedImages, 
+  transactionSignature, 
+  nftMintAddress 
+}: PublishConfirmationProps) {
   const confirmationRef = useRef<HTMLDivElement>(null)
 
   // Animation for confirmation
@@ -26,8 +33,11 @@ export function PublishConfirmation({ cardData, uploadedImages }: PublishConfirm
     }
   }, [])
 
-  // Mock transaction hash
-  const txHash = "0x7d865e959b2466918c9863afca942d0fb89d7c9ac0c99bafc3749504ded97730"
+  // Use real transaction hash or fallback to mock
+  const txHash = transactionSignature || "0x7d865e959b2466918c9863afca942d0fb89d7c9ac0c99bafc3749504ded97730"
+  const explorerUrl = transactionSignature 
+    ? `https://explorer.solana.com/tx/${transactionSignature}?cluster=devnet`
+    : `https://etherscan.io/tx/${txHash}`
 
   return (
     <div ref={confirmationRef} className="max-w-3xl mx-auto text-center space-y-12">
@@ -85,13 +95,13 @@ export function PublishConfirmation({ cardData, uploadedImages }: PublishConfirm
             <div className="flex justify-between items-center">
               <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Status</span>
               <span className="text-pikavault-cyan font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                Confirmed
+                {transactionSignature ? "Confirmed" : "Pending"}
               </span>
             </div>
             <div className="flex justify-between items-center">
               <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Transaction</span>
               <a
-                href={`https://etherscan.io/tx/${txHash}`}
+                href={explorerUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-1 text-white/70 hover:text-pikavault-yellow transition-colors"
@@ -103,8 +113,16 @@ export function PublishConfirmation({ cardData, uploadedImages }: PublishConfirm
               </a>
             </div>
             <div className="flex justify-between items-center">
-              <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Token ID</span>
-              <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>#12345</span>
+              <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>NFT Mint</span>
+              <span className="font-mono text-xs" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                {nftMintAddress ? `${nftMintAddress.slice(0, 6)}...${nftMintAddress.slice(-4)}` : "#12345"}
+              </span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Network</span>
+              <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                {transactionSignature ? "Solana Devnet" : "Ethereum"}
+              </span>
             </div>
             <div className="flex justify-between items-center">
               <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Timestamp</span>
@@ -116,7 +134,7 @@ export function PublishConfirmation({ cardData, uploadedImages }: PublishConfirm
 
       <div className="space-y-4">
         <Link
-          href="/card/001"
+          href="/collection"
           className="inline-block px-8 py-4 bg-pikavault-yellow text-pikavault-dark font-bold text-lg"
           style={{ fontFamily: "'Monument Extended', sans-serif" }}
         >

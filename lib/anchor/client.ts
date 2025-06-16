@@ -2,6 +2,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { useConnection } from "@solana/wallet-adapter-react";
 import { useMemo } from "react";
 import { getProvider, getProgram } from "./config";
+import type { PikaVault } from "./idl";
 
 export const useAnchorProgram = () => {
   const { connection } = useConnection();
@@ -14,11 +15,11 @@ export const useAnchorProgram = () => {
 
   const program = useMemo(() => {
     if (!provider) return null;
-    return getProgram(provider);
+    return getProgram(provider) as any; // Type assertion to work around the IDL typing issue
   }, [provider]);
 
   return {
-    program,
+    program: program as any, // Ensure the program is typed correctly for our usage
     provider,
     wallet,
     connection,
