@@ -11,6 +11,16 @@ import { PublishConfirmation } from "@/components/listing/publish-confirmation"
 import { CustomToast } from "@/components/ui/custom-toast"
 import { useWallet } from "@solana/wallet-adapter-react"
 import { gsap } from "gsap"
+import { useAnchorProgram } from "@/lib/anchor/client"
+import { 
+  registerUser, 
+  mintAndListNFT,
+  getUserAccount,
+  findMarketplacePDA
+} from "@/lib/anchor/transactions"
+import { MARKETPLACE_ADMIN } from "@/lib/anchor/config"
+import { Keypair, LAMPORTS_PER_SOL } from "@solana/web3.js"
+import { createMint } from "@solana/spl-token"
 
 export default function ListingPage() {
   const [activeStep, setActiveStep] = useState(0)
@@ -34,16 +44,56 @@ export default function ListingPage() {
   const [isProcessing, setIsProcessing] = useState(false)
   const [isPublished, setIsPublished] = useState(false)
   const [showToast, setShowToast] = useState(false)
+  const [userRegistered, setUserRegistered] = useState(false)
+  const [publishingError, setPublishingError] = useState<string | null>(null)
+  const [transactionSignature, setTransactionSignature] = useState<string | null>(null)
+  const [nftMintAddress, setNftMintAddress] = useState<string | null>(null)
   const pageRef = useRef<HTMLDivElement>(null)
 
   const { connected } = useWallet()
+  const { program, wallet, connection } = useAnchorProgram()
 
-  // Check wallet connection on page load
+  // Check wallet connection and user registration on page load
   useEffect(() => {
     if (!connected) {
       setShowToast(true)
+    } else if (program && wallet.publicKey) {
+      checkUserRegistration()
     }
-  }, [connected])
+  }, [connected, program, wallet.publicKey])
+
+  // Check if user is registered
+  const checkUserRegistration = async () => {
+    if (!program || !wallet.publicKey) return
+    
+    try {
+      const userAcc = await getUserAccount(program, wallet.publicKey)
+      setUserRegistered(true)
+      console.log("user account status", userAcc)
+    } catch (error) {
+      setUserRegistered(false)
+      console.log("User not registered yet")
+    }
+  }
+
+  // Register user if not already registered
+  const ensureUserRegistered = async () => {
+    if (!program || !wallet.publicKey) {
+      throw new Error("Program or wallet not available")
+    }
+
+    if (!userRegistered) {
+      try {
+        console.log("Registering user...")
+        await registerUser(program, wallet.publicKey)
+        setUserRegistered(true)
+        console.log("User registered successfully")
+      } catch (error) {
+        console.error("Failed to register user:", error)
+        throw new Error("Failed to register user: " + (error instanceof Error ? error.message : "Unknown error"))
+      }
+    }
+  }
 
   // Auto-save functionality
   useEffect(() => {
@@ -107,6 +157,89 @@ export default function ListingPage() {
     setCardData({ ...cardData, ...data })
   }
 
+  // Publish listing to blockchain
+  const publishListing = async () => {
+    if (!program || !wallet.publicKey || !connected) {
+      throw new Error("Wallet not connected or program not available")
+    }
+
+    try {
+      setPublishingError(null)
+      
+      // Ensure user is registered
+      await ensureUserRegistered()
+
+      // Generate NFT mint keypair
+      const nftMint = Keypair.generate()
+      
+      // Create collection mint (in a real app, you might have a pre-existing collection)
+      console.log("Creating collection mint...")
+      const collectionMint = await createMint(
+        connection,
+        wallet as any,
+        wallet.publicKey,
+        wallet.publicKey,
+        0
+      )
+
+      // Get marketplace PDA
+      const [marketplacePDA] = findMarketplacePDA(MARKETPLACE_ADMIN, program.programId)
+      
+      // Convert price to lamports (assuming price is in USD, convert to SOL for demo)
+      // In a real app, you'd have proper price conversion
+      const priceInSOL = (cardData.price || cardData.suggestedPrice) / 100 // Simplified conversion
+      const priceInLamports = priceInSOL * LAMPORTS_PER_SOL
+
+      // Create metadata string from card data
+      const metadata = JSON.stringify({
+        name: cardData.name,
+        set: cardData.set,
+        number: cardData.number,
+        rarity: cardData.rarity,
+        condition: cardData.condition,
+        language: cardData.language,
+        isGraded: cardData.isGraded,
+        gradingCompany: cardData.gradingCompany,
+        gradingScore: cardData.gradingScore,
+        conditionNotes: cardData.conditionNotes,
+        listingType: cardData.listingType,
+        duration: cardData.duration
+      })
+
+      // Use first uploaded image as main image
+      const imageUrl = uploadedImages[0] || ""
+
+      console.log("Minting and listing NFT...")
+      const result = await mintAndListNFT(
+        program,
+        wallet.publicKey,
+        marketplacePDA,
+        nftMint,
+        collectionMint,
+        cardData.name,
+        cardData.set.slice(0, 10), // Symbol has character limit
+        priceInLamports,
+        metadata,
+        imageUrl
+      )
+
+      setTransactionSignature(result.tx)
+      setNftMintAddress(nftMint.publicKey.toString())
+      
+      console.log("NFT minted and listed successfully!")
+      console.log("Transaction:", result.tx)
+      console.log("NFT Mint:", nftMint.publicKey.toString())
+      
+      return result
+
+    } catch (error) {
+      console.error("Error publishing listing:", error)
+      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred"
+      setPublishingError(errorMessage)
+      throw error
+    }
+  }
+
   // Handle step navigation
   const nextStep = () => {
     if (!connected) {
@@ -118,12 +251,17 @@ export default function ListingPage() {
       setActiveStep(activeStep + 1)
       window.scrollTo({ top: 0, behavior: "smooth" })
     } else {
-      // Publish listing
+      // Publish listing to blockchain
       setIsProcessing(true)
-      setTimeout(() => {
-        setIsProcessing(false)
-        setIsPublished(true)
-      }, 2000)
+      publishListing()
+        .then(() => {
+          setIsProcessing(false)
+          setIsPublished(true)
+        })
+        .catch((error) => {
+          setIsProcessing(false)
+          console.error("Failed to publish listing:", error)
+        })
     }
   }
 
@@ -185,6 +323,29 @@ export default function ListingPage() {
             Transform your physical Pokémon cards into digital assets on the blockchain. Our secure process ensures
             authenticity and provides a permanent record of ownership.
           </p>
+
+          {/* Show error if publishing failed */}
+          {publishingError && (
+            <div className="mb-8 bg-red-900/20 border-l-4 border-red-500 p-4">
+              <h4 className="font-bold text-red-400 mb-2">Publishing Failed</h4>
+              <p className="text-red-300 text-sm">{publishingError}</p>
+              <button
+                onClick={() => setPublishingError(null)}
+                className="mt-2 text-red-400 hover:text-red-300 text-sm underline"
+              >
+                Dismiss
+              </button>
+            </div>
+          )}
+
+          {/* Show user registration status */}
+          {connected && !userRegistered && (
+            <div className="mb-8 bg-yellow-900/20 border-l-4 border-yellow-500 p-4">
+              <p className="text-yellow-300 text-sm">
+                Your wallet will be registered automatically when you publish your first listing.
+              </p>
+            </div>
+          )}
 
           {!isPublished ? (
             <>
@@ -336,11 +497,13 @@ export default function ListingPage() {
                     }
                   }}
                   disabled={
+                    isProcessing ||
                     (activeStep === 0 && uploadedImages.length === 0) ||
                     (activeStep === 1 && (!cardData.name || !cardData.set || !cardData.rarity)) ||
                     (activeStep === 2 && !cardData.condition)
                   }
                   className={`px-8 py-4 transition-all duration-300 ${
+                    isProcessing ||
                     (activeStep === 0 && uploadedImages.length === 0) ||
                     (activeStep === 1 && (!cardData.name || !cardData.set || !cardData.rarity)) ||
                     (activeStep === 2 && !cardData.condition)
@@ -352,6 +515,7 @@ export default function ListingPage() {
                   style={{ fontFamily: "'Monument Extended', sans-serif" }}
                   onMouseEnter={() => {
                     if (
+                      !isProcessing &&
                       !(
                         (activeStep === 0 && uploadedImages.length === 0) ||
                         (activeStep === 1 && (!cardData.name || !cardData.set || !cardData.rarity)) ||
@@ -362,12 +526,22 @@ export default function ListingPage() {
                     }
                   }}
                 >
-                  {activeStep === 3 ? "PUBLISH LISTING" : "NEXT STEP"}
+                  {isProcessing 
+                    ? "PUBLISHING..." 
+                    : activeStep === 3 
+                      ? "PUBLISH LISTING" 
+                      : "NEXT STEP"
+                  }
                 </button>
               </div>
             </>
           ) : (
-            <PublishConfirmation cardData={cardData} uploadedImages={uploadedImages} />
+            <PublishConfirmation 
+              cardData={cardData} 
+              uploadedImages={uploadedImages}
+              transactionSignature={transactionSignature}
+              nftMintAddress={nftMintAddress}
+            />
           )}
         </div>
       </main>

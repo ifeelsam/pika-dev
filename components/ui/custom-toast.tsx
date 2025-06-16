@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { X, AlertTriangle } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { CustomWalletButton } from "./custom-wallet-button"
+import { useWallet } from "@solana/wallet-adapter-react"
 
 interface CustomToastProps {
   isVisible: boolean
@@ -13,6 +15,16 @@ interface CustomToastProps {
   message?: string
   secondaryMessage?: string
 }
+
+const CUSTOM_LABELS = {
+  'change-wallet': 'Change wallet',
+  connecting: 'Connecting ...',
+  'copy-address': 'Copy address',
+  copied: 'Copied',
+  disconnect: 'Disconnect',
+  'has-wallet': 'Connect',
+  'no-wallet': 'Connect Wallet',
+} as const;
 
 export function CustomToast({
   isVisible,
@@ -25,10 +37,18 @@ export function CustomToast({
   const toastRef = useRef<HTMLDivElement>(null)
   const [isConnecting, setIsConnecting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const { connected } = useWallet()
+
+  // Only show toast if wallet is not connected
+  useEffect(() => {
+    if (connected) {
+      onClose()
+    }
+  }, [connected, onClose])
 
   useEffect(() => {
     if (toastRef.current) {
-      if (isVisible) {
+      if (isVisible && !connected) {
         // Entrance animation
         gsap.fromTo(
           toastRef.current,
@@ -83,7 +103,7 @@ export function CustomToast({
 
       tl.to(toastRef.current, {
         skewX: 10,
-        duration: 0.1,
+        duration: 0.2,
       })
         .to(toastRef.current, {
           skewX: -5,
@@ -106,23 +126,25 @@ export function CustomToast({
     // Simulate connection process
     setTimeout(() => {
       setIsConnecting(false)
-      setIsSuccess(true)
+      if (connected) {
+        setIsSuccess(true)
 
-      // Transform to success state
-      if (toastRef.current) {
-        gsap.to(toastRef.current, {
-          backgroundColor: "#00F5FF",
-          borderColor: "#F6FF00",
-          duration: 0.3,
-        })
+        // Transform to success state
+        if (toastRef.current) {
+          gsap.to(toastRef.current, {
+            backgroundColor: "#00F5FF",
+            borderColor: "#F6FF00",
+            duration: 0.3,
+          })
+        }
+
+        // Auto-close after showing success
+        setTimeout(() => {
+          localStorage.setItem("wallet_connected", "true")
+          onConnect()
+          handleClose()
+        }, 2000)
       }
-
-      // Auto-close after showing success
-      setTimeout(() => {
-        localStorage.setItem("wallet_connected", "true")
-        onConnect()
-        handleClose()
-      }, 2000)
     }, 1500)
   }
 
@@ -132,10 +154,10 @@ export function CustomToast({
     }
   }
 
-  if (!isVisible) return null
+  if (!isVisible || connected) return null
 
   return (
-    <div className="fixed top-4 right-4 z-50">
+    <div className="fixed bottom-4 right-4 z-50">
       <div
         ref={toastRef}
         onClick={handleToastClick}
@@ -180,7 +202,7 @@ export function CustomToast({
           {/* Text Content */}
           <div className="flex-1">
             <h3
-              className="text-white text-xl font-black leading-tight"
+              className="text-white text-md font-black leading-tight"
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
             >
               {isSuccess ? "WALLET CONNECTED" : isConnecting ? "CONNECTING..." : message}
@@ -192,18 +214,9 @@ export function CustomToast({
 
           {/* Action Button */}
           {!isSuccess && !isConnecting && (
-            <div className="flex-shrink-0">
-              <Button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  handleConnect()
-                }}
-                className="bg-pikavault-yellow text-pikavault-dark hover:bg-pikavault-yellow/90 text-sm font-bold px-4 py-2 rounded-none"
-                style={{ fontFamily: "'Monument Extended', sans-serif" }}
-              >
-                CONNECT NOW
-              </Button>
-            </div>
+              <CustomWalletButton
+                className="bg-pikavault-yellow text-pikavault-dark hover:bg-pikavault-yellow/90 text-sm font-bold rounded-none"
+              />
           )}
 
           {isConnecting && (

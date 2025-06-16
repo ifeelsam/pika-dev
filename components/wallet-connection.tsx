@@ -5,8 +5,8 @@ import { ChevronDown, Copy, ExternalLink, Check } from "lucide-react"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { WalletMobileSheet } from "./wallet-mobile-sheet"
 import { useWallet, useConnection } from "@solana/wallet-adapter-react"
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
 import { LAMPORTS_PER_SOL } from "@solana/web3.js"
+import { CustomWalletButton } from "./ui/custom-wallet-button"
 
 export function WalletConnection() {
   const { publicKey, connected, disconnect } = useWallet()
@@ -85,18 +85,14 @@ export function WalletConnection() {
   }
 
   if (!connected) {
-    return (
-      <div className="wallet-adapter-button-trigger">
-        <WalletMultiButton />
-      </div>
-    )
+    return <CustomWalletButton className="wallet-adapter-button-trigger"/>
   }
 
   return (
     <div className="relative" ref={dropdownRef}>
       {/* Connect Button */}
       <button
-        onClick={() => {
+         onClick={() => {
           if (isMobile) {
             setIsMobileSheetOpen(!isMobileSheetOpen)
           } else {
