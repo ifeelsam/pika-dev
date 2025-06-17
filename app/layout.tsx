@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { WalletContextProvider } from '@/components/providers/wallet-provider'
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: 'PikaVault - Digital Card Collection',
@@ -18,6 +19,7 @@ export default function RootLayout({
       <meta property="og:url" content="https://x.com"></meta>
       <body>
         <WalletContextProvider>{children}</WalletContextProvider>
+        <Analytics/>
       </body>
     </html>
   )
