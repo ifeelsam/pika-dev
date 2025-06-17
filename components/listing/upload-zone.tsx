@@ -5,6 +5,7 @@ import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { gsap } from "gsap"
 import { Upload, Camera, X, Check, AlertTriangle } from "lucide-react"
+import { uploadMultipleToIPFS, blobURLtoFile } from "@/lib/ipfs/pinata"
 
 interface UploadZoneProps {
   onImageUpload: (images: string[]) => void
@@ -19,6 +20,7 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
   const [captureType, setCaptureType] = useState<"front" | "back" | "corner" | "holo">("front")
   const [uploadProgress, setUploadProgress] = useState(0)
   const [uploadError, setUploadError] = useState("")
+  const [isUploading, setIsUploading] = useState(false)
   const dropZoneRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -83,7 +85,7 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
   }
 
   // Process uploaded files
-  const handleFiles = (files: FileList) => {
+  const handleFiles = async (files: FileList) => {
     setUploadError("")
     const validFiles = Array.from(files).filter((file) => file.type.startsWith("image/"))
 
@@ -93,21 +95,33 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
       return
     }
 
-    // Simulate upload progress
-    let progress = 0
-    const interval = setInterval(() => {
-      progress += 10
-      setUploadProgress(progress)
-      if (progress >= 100) {
-        clearInterval(interval)
-        setTimeout(() => {
-          const imageUrls = validFiles.map((file) => URL.createObjectURL(file))
-          onImageUpload([...uploadedImages, ...imageUrls])
-          setUploadProgress(0)
-          onSound("success")
-        }, 500)
-      }
-    }, 200)
+    setIsUploading(true)
+    setUploadProgress(10)
+
+    try {
+      // Upload files to IPFS
+      const ipfsUrls = await uploadMultipleToIPFS(validFiles)
+      
+      // Update progress as uploads complete
+      setUploadProgress(100)
+      
+      // Add new URLs to existing ones
+      onImageUpload([...uploadedImages, ...ipfsUrls])
+      console.log(ipfsUrls)
+      onSound("success")
+      
+      // Reset progress
+      setTimeout(() => {
+        setUploadProgress(0)
+        setIsUploading(false)
+      }, 500)
+    } catch (error) {
+      console.error("Error uploading to IPFS:", error)
+      setUploadError("Failed to upload to IPFS. Please try again.")
+      setIsUploading(false)
+      setUploadProgress(0)
+      onSound("error")
+    }
   }
 
   // Handle camera activation
@@ -127,7 +141,7 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
   }
 
   // Handle camera capture
-  const captureImage = () => {
+  const captureImage = async () => {
     if (videoRef.current && canvasRef.current) {
       const video = videoRef.current
       const canvas = canvasRef.current
@@ -138,26 +152,46 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
         canvas.height = video.videoHeight
         context.drawImage(video, 0, 0, canvas.width, canvas.height)
 
-        canvas.toBlob(
-          (blob) => {
-            if (blob) {
-              const imageUrl = URL.createObjectURL(blob)
-              onImageUpload([...uploadedImages, imageUrl])
-              onSound("success")
+        try {
+          // Convert canvas to blob
+          const blob = await new Promise<Blob>((resolve) => {
+            canvas.toBlob((b) => resolve(b!), "image/jpeg", 0.95)
+          })
+          
+          // Create file from blob
+          const file = new File([blob], `pikavault-${captureType}-${Date.now()}.jpg`, { type: "image/jpeg" })
+          
+          setIsUploading(true)
+          setUploadProgress(10)
+          
+          // Upload to IPFS
+          const ipfsUrl = await uploadMultipleToIPFS([file])
+          
+          setUploadProgress(100)
+          onImageUpload([...uploadedImages, ...ipfsUrl])
+          onSound("success")
+          console.log('ii', ipfsUrl)
+          // Reset progress
+          setTimeout(() => {
+            setUploadProgress(0)
+            setIsUploading(false)
+          }, 500)
 
-              // Move to next capture type
-              if (captureType === "front") setCaptureType("back")
-              else if (captureType === "back") setCaptureType("corner")
-              else if (captureType === "corner") setCaptureType("holo")
-              else {
-                // Stop camera after all captures
-                stopCamera()
-              }
-            }
-          },
-          "image/jpeg",
-          0.95,
-        )
+          // Move to next capture type
+          if (captureType === "front") setCaptureType("back")
+          else if (captureType === "back") setCaptureType("corner")
+          else if (captureType === "corner") setCaptureType("holo")
+          else {
+            // Stop camera after all captures
+            stopCamera()
+          }
+        } catch (error) {
+          console.error("Error uploading camera capture:", error)
+          setUploadError("Failed to upload capture. Please try again.")
+          setIsUploading(false)
+          setUploadProgress(0)
+          onSound("error")
+        }
       }
     }
   }
@@ -193,7 +227,7 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
-        onClick={() => !cameraActive && fileInputRef.current?.click()}
+        onClick={() => !cameraActive && !isUploading && fileInputRef.current?.click()}
       >
         <input
           type="file"
@@ -202,6 +236,7 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
           accept="image/*"
           multiple
           onChange={handleFileInputChange}
+          disabled={isUploading}
         />
 
         {!cameraActive ? (
@@ -218,12 +253,17 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
                 e.stopPropagation()
                 activateCamera()
               }}
-              className="px-6 py-3 bg-pikavault-cyan text-pikavault-dark font-bold flex items-center space-x-2"
+              disabled={isUploading}
+              className={`px-6 py-3 ${
+                isUploading 
+                  ? "bg-gray-500 cursor-not-allowed" 
+                  : "bg-pikavault-cyan hover:bg-pikavault-cyan/90"
+              } text-pikavault-dark font-bold flex items-center space-x-2`}
               style={{ fontFamily: "'Monument Extended', sans-serif" }}
-              onMouseEnter={() => onSound("hover")}
+              onMouseEnter={() => !isUploading && onSound("hover")}
             >
               <Camera className="w-5 h-5" />
-              <span>USE CAMERA</span>
+              <span>{isUploading ? "UPLOADING..." : "USE CAMERA"}</span>
             </button>
           </>
         ) : (
@@ -245,19 +285,27 @@ export function UploadZone({ onImageUpload, uploadedImages, isProcessing, onSoun
             <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-4">
               <button
                 onClick={captureImage}
-                className="px-6 py-3 bg-pikavault-yellow text-pikavault-dark font-bold"
+                disabled={isUploading}
+                className={`px-6 py-3 ${
+                  isUploading 
+                    ? "bg-gray-500 cursor-not-allowed" 
+                    : "bg-pikavault-yellow hover:bg-pikavault-yellow/90"
+                } text-pikavault-dark font-bold`}
                 style={{ fontFamily: "'Monument Extended', sans-serif" }}
-                onMouseEnter={() => onSound("hover")}
-                onClick={() => onSound("click")}
+                onMouseEnter={() => !isUploading && onSound("hover")}
               >
-                CAPTURE
+                {isUploading ? "UPLOADING..." : "CAPTURE"}
               </button>
               <button
                 onClick={stopCamera}
-                className="px-6 py-3 bg-pikavault-pink text-white font-bold"
+                disabled={isUploading}
+                className={`px-6 py-3 ${
+                  isUploading 
+                    ? "bg-gray-500 cursor-not-allowed" 
+                    : "bg-pikavault-pink hover:bg-pikavault-pink/90"
+                } text-white font-bold`}
                 style={{ fontFamily: "'Monument Extended', sans-serif" }}
-                onMouseEnter={() => onSound("hover")}
-                onClick={() => onSound("click")}
+                onMouseEnter={() => !isUploading && onSound("hover")}
               >
                 CANCEL
               </button>

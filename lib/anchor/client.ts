@@ -2,7 +2,6 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { useConnection } from "@solana/wallet-adapter-react";
 import { useMemo } from "react";
 import { getProvider, getProgram } from "./config";
-import type { PikaVault } from "./idl";
 
 export const useAnchorProgram = () => {
   const { connection } = useConnection();

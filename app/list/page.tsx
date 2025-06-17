@@ -203,13 +203,16 @@ export default function ListingPage() {
         gradingScore: cardData.gradingScore,
         conditionNotes: cardData.conditionNotes,
         listingType: cardData.listingType,
-        duration: cardData.duration
+        duration: cardData.duration,
+        images: uploadedImages // Include all IPFS image URLs
       })
 
       // Use first uploaded image as main image
       const imageUrl = uploadedImages[0] || ""
 
       console.log("Minting and listing NFT...")
+      console.log("Using IPFS image URL:", imageUrl)
+      
       const result = await mintAndListNFT(
         program,
         wallet.publicKey,

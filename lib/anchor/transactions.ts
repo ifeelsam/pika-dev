@@ -1,10 +1,8 @@
 import { PublicKey, SystemProgram, Keypair, LAMPORTS_PER_SOL, SYSVAR_RENT_PUBKEY } from "@solana/web3.js";
 import { Program, BN } from "@coral-xyz/anchor";
 import { TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID, getAssociatedTokenAddress } from "@solana/spl-token";
+import { METADATA_PROGRAM_ID } from "./config";
 import type { PikaVault } from "./idl";
-
-// Constants
-export const METADATA_PROGRAM_ID = new PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s");
 
 // Helper function to find marketplace PDA
 export const findMarketplacePDA = (authority: PublicKey, programId: PublicKey) => {
