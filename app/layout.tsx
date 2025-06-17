@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <meta property="og:site_name" content="PikaVault"></meta>
-      <meta property="og:url" content="https://x.com"></meta>
+      <meta property="og:url" content="https://x.com/PikaVault_"></meta>
       <body>
         <WalletContextProvider>{children}</WalletContextProvider>
         <Analytics/>
