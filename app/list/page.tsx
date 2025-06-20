@@ -227,12 +227,13 @@ export default function ListingPage() {
           ...(cardData.isGraded && cardData.gradingCompany ? [{ trait_type: "Grading Company", value: cardData.gradingCompany }] : []),
           ...(cardData.isGraded && cardData.gradingScore ? [{ trait_type: "Grade", value: cardData.gradingScore }] : []),
         ]
-      })
+      }, wallet)
 
       // Convert UMI public key to Solana public key
       const nftMintPublicKey = new PublicKey(nftResult.nftMint.publicKey)
       
       console.log("NFT minted with metadata! Mint:", nftMintPublicKey.toString())
+      console.log("Metadata URI:", nftResult.metadataUri)
 
       // Step 2: List the NFT on the marketplace
       const listResult = await listNFT(

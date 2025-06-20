@@ -21,6 +21,7 @@ import {
 } from "@metaplex-foundation/umi";
 import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";
 import { base58 } from "@metaplex-foundation/umi/serializers";
+import { uploadMetadataToIrys } from "../ipfs/pinata";
 
 // Helper function to find marketplace PDA
 export const findMarketplacePDA = (authority: PublicKey, programId: PublicKey) => {
@@ -163,15 +164,17 @@ export const mintNFTWithUmi = async (
     description: string;
     image: string;
     attributes?: Array<{ trait_type: string; value: string }>;
-  }
-): Promise<{ nftMint: Signer; tx: string }> => {
+  },
+  wallet: any
+): Promise<{ nftMint: Signer; tx: string; metadataUri: string }> => {
   try {
     // Generate a new NFT mint signer
     const nftMint = generateSigner(umi);
 
-    // For now, we'll use a placeholder metadata URI since we can't upload without Irys
-    // In production, you would upload this to IPFS or Arweave separately
-    const metadataUri = "https://www.pikavault.xyz/electric-pokemon-card-back.png";
+    // Upload metadata to Irys
+    console.log("Uploading metadata to Irys devnet...");
+    const metadataUri = await uploadMetadataToIrys(metadata, wallet);
+    console.log("Metadata uploaded to Irys:", metadataUri);
 
     // Create the NFT
     const createNftIx = createNft(umi, {
@@ -184,7 +187,7 @@ export const mintNFTWithUmi = async (
 
     // Send and confirm the transaction
     const result = await createNftIx.sendAndConfirm(umi);
-    
+    console.log("result", result)
     // Decode the transaction signature
     const signature = base58.deserialize(result.signature)[0];
 
@@ -192,7 +195,7 @@ export const mintNFTWithUmi = async (
     console.log("NFT Mint Address:", nftMint.publicKey);
     console.log("Metadata URI:", metadataUri);
 
-    return { nftMint, tx: signature };
+    return { nftMint, tx: signature, metadataUri };
   } catch (error) {
     console.error("Error minting NFT with UMI:", error);
     throw error;

@@ -38,11 +38,9 @@ interface ListingData {
   account: {
     owner: string;
     nftAddress: string;
-    cardMetadata: string;
     listingPrice: string;
     status: any;
     createdAt: string;
-    imageUrl: string;
     bump: number;
   };
 }
@@ -105,15 +103,13 @@ export function MarketplaceInterface() {
         account: {
           owner: item.account.owner.toString(),
           nftAddress: item.account.nftAddress.toString(),
-          // cardMetadata: item.account.cardMetadata,
           listingPrice: item.account.listingPrice.toString(),
           status: item.account.status,
           createdAt: item.account.createdAt.toString(),
-          // imageUrl: item.account.imageUrl,
           bump: item.account.bump
         }
       }));
-      // setListings(formattedListings);
+      setListings(formattedListings);
     } catch (error) {
       console.error("Error loading listings:", error);
     }
@@ -165,12 +161,13 @@ export function MarketplaceInterface() {
         symbol: nftForm.symbol,
         description: nftForm.description,
         image: nftForm.imageUrl,
-      });
+      }, wallet);
 
       // Convert UMI public key to Solana public key
       const nftMint = new PublicKey(nftResult.nftMint.publicKey);
 
       console.log("NFT minted with metadata! Mint:", nftMint.toString());
+      console.log("Metadata URI:", nftResult.metadataUri);
 
       // Step 2: List the NFT on the marketplace
       const [marketplacePDA] = findMarketplacePDA(MARKETPLACE_ADMIN, program.programId);
@@ -186,7 +183,7 @@ export function MarketplaceInterface() {
 
       console.log("NFT listed on marketplace successfully!");
 
-      setSuccess(`NFT minted with metadata and listed successfully! TX: ${listResult.tx}`);
+      setSuccess(`NFT minted with metadata and listed successfully! TX: ${listResult.tx} | Metadata: ${nftResult.metadataUri}`);
       setNftForm({ name: "", symbol: "", price: "", description: "", imageUrl: "" });
       await loadListings();
       await checkUserRegistration();
@@ -429,7 +426,7 @@ export function MarketplaceInterface() {
                 <Card key={listing.publicKey}>
                   <CardHeader>
                     <CardTitle className="text-lg truncate">
-                      {listing.account.cardMetadata}
+                      NFT: {listing.account.nftAddress.slice(0, 8)}...
                     </CardTitle>
                     <Badge variant={
                       listing.account.status.active ? "default" : 
@@ -440,16 +437,6 @@ export function MarketplaceInterface() {
                     </Badge>
                   </CardHeader>
                   <CardContent>
-                    {listing.account.imageUrl && (
-                      <img 
-                        src={listing.account.imageUrl} 
-                        alt="NFT"
-                        className="w-full h-32 object-cover rounded-md mb-3"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = 'none';
-                        }}
-                      />
-                    )}
                     <div className="space-y-2 text-sm">
                       <p><strong>Price:</strong> {(parseInt(listing.account.listingPrice) / LAMPORTS_PER_SOL).toFixed(4)} SOL</p>
                       <p><strong>Owner:</strong> {listing.account.owner.slice(0, 8)}...</p>
